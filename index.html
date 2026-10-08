@@ -49,6 +49,28 @@ header h1 {
     margin-bottom: 15px;
 }
 
+.stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.stat {
+    padding: 18px;
+    border-radius: 15px;
+    background: #eef6ff;
+}
+
+.stat h3 {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.stat p {
+    color: #667085;
+    font-size: 14px;
+}
+
 input {
     width: 100%;
     padding: 13px;
@@ -70,7 +92,6 @@ button {
 
 .add-btn {
     width: 100%;
-    margin-top: 5px;
 }
 
 .assignment {
@@ -86,7 +107,7 @@ button {
 
 .assignment p {
     color: #667085;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .completed {
@@ -94,9 +115,14 @@ button {
     text-decoration: line-through;
 }
 
+.overdue {
+    border-left: 5px solid #dc3545;
+}
+
 .actions {
     display: flex;
     gap: 8px;
+    margin-top: 10px;
 }
 
 .complete-btn {
@@ -131,7 +157,43 @@ footer {
 
 <div class="container">
 
+    <!-- DASHBOARD -->
+
     <div class="card">
+
+        <h2>📊 Dashboard</h2>
+
+        <div class="stats">
+
+            <div class="stat">
+                <h3 id="total">0</h3>
+                <p>Total Assignments</p>
+            </div>
+
+            <div class="stat">
+                <h3 id="pending">0</h3>
+                <p>Pending</p>
+            </div>
+
+            <div class="stat">
+                <h3 id="completed">0</h3>
+                <p>Completed</p>
+            </div>
+
+            <div class="stat">
+                <h3 id="overdue">0</h3>
+                <p>Overdue</p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ADD ASSIGNMENT -->
+
+    <div class="card">
+
         <h2>📝 Add Assignment</h2>
 
         <input
@@ -151,22 +213,34 @@ footer {
             id="deadline"
         >
 
-        <button class="add-btn" onclick="addAssignment()">
+        <button
+            class="add-btn"
+            onclick="addAssignment()">
+
             + Add Assignment
+
         </button>
+
     </div>
 
+
+    <!-- ASSIGNMENTS -->
+
     <div class="card">
+
         <h2>📚 My Assignments</h2>
 
         <div id="assignmentList"></div>
+
     </div>
 
 </div>
 
+
 <footer>
     CampusPocket © 2026
 </footer>
+
 
 <script>
 
@@ -174,38 +248,60 @@ let assignments =
     JSON.parse(localStorage.getItem("assignments")) || [];
 
 
+/* SAVE DATA */
+
 function saveAssignments() {
+
     localStorage.setItem(
         "assignments",
         JSON.stringify(assignments)
     );
+
 }
 
+
+/* ADD ASSIGNMENT */
 
 function addAssignment() {
 
     const name =
-        document.getElementById("assignmentName").value.trim();
+        document
+        .getElementById("assignmentName")
+        .value
+        .trim();
 
     const course =
-        document.getElementById("courseName").value.trim();
+        document
+        .getElementById("courseName")
+        .value
+        .trim();
 
     const deadline =
-        document.getElementById("deadline").value;
+        document
+        .getElementById("deadline")
+        .value;
 
 
     if (!name || !course || !deadline) {
+
         alert("Please fill in all fields.");
+
         return;
     }
 
 
     const assignment = {
+
         id: Date.now(),
+
         name: name,
+
         course: course,
+
         deadline: deadline,
+
         completed: false
+
     };
 
 
@@ -213,60 +309,127 @@ function addAssignment() {
 
     saveAssignments();
 
-    document.getElementById("assignmentName").value = "";
-    document.getElementById("courseName").value = "";
-    document.getElementById("deadline").value = "";
+
+    document
+    .getElementById("assignmentName")
+    .value = "";
+
+    document
+    .getElementById("courseName")
+    .value = "";
+
+    document
+    .getElementById("deadline")
+    .value = "";
+
 
     displayAssignments();
+
+    updateDashboard();
+
 }
 
 
+/* COMPLETE */
+
 function completeAssignment(id) {
 
-    assignments = assignments.map(function(assignment) {
+    assignments =
+        assignments.map(function(assignment) {
 
-        if (assignment.id === id) {
-            assignment.completed = !assignment.completed;
-        }
+            if (assignment.id === id) {
 
-        return assignment;
-    });
+                assignment.completed =
+                    !assignment.completed;
+
+            }
+
+            return assignment;
+
+        });
+
 
     saveAssignments();
 
     displayAssignments();
+
+    updateDashboard();
+
 }
 
+
+/* DELETE */
 
 function deleteAssignment(id) {
 
     if (!confirm("Delete this assignment?")) {
+
         return;
+
     }
+
 
     assignments =
         assignments.filter(function(assignment) {
+
             return assignment.id !== id;
+
         });
+
 
     saveAssignments();
 
     displayAssignments();
+
+    updateDashboard();
+
 }
 
+
+/* CHECK OVERDUE */
+
+function isOverdue(assignment) {
+
+    if (assignment.completed) {
+
+        return false;
+
+    }
+
+
+    const today =
+        new Date();
+
+    today.setHours(0,0,0,0);
+
+
+    const deadline =
+        new Date(assignment.deadline);
+
+    deadline.setHours(0,0,0,0);
+
+
+    return deadline < today;
+
+}
+
+
+/* DISPLAY */
 
 function displayAssignments() {
 
     const list =
-        document.getElementById("assignmentList");
+        document
+        .getElementById("assignmentList");
 
 
     if (assignments.length === 0) {
 
         list.innerHTML =
-            '<div class="empty">No assignments yet.</div>';
+        '<div class="empty">No assignments yet.</div>';
 
         return;
+
     }
 
 
@@ -278,4 +441,130 @@ function displayAssignments() {
         const item =
             document.createElement("div");
 
-        item.className = "assignment
+
+        item.className = "assignment";
+
+
+        if (assignment.completed) {
+
+            item.classList.add("completed");
+
+        }
+
+
+        if (isOverdue(assignment)) {
+
+            item.classList.add("overdue");
+
+        }
+
+
+        item.innerHTML = `
+
+            <h3>${assignment.name}</h3>
+
+            <p>📚 ${assignment.course}</p>
+
+            <p>📅 ${assignment.deadline}</p>
+
+            ${
+                isOverdue(assignment)
+                ? "<p>🔴 OVERDUE</p>"
+                : ""
+            }
+
+            <div class="actions">
+
+                <button
+                    class="complete-btn"
+                    onclick="completeAssignment(${assignment.id})">
+
+                    ${
+                        assignment.completed
+                        ? "↩ Undo"
+                        : "✓ Complete"
+                    }
+
+                </button>
+
+
+                <button
+                    class="delete-btn"
+                    onclick="deleteAssignment(${assignment.id})">
+
+                    🗑 Delete
+
+                </button>
+
+            </div>
+
+        `;
+
+
+        list.appendChild(item);
+
+    });
+
+}
+
+
+/* DASHBOARD */
+
+function updateDashboard() {
+
+    const total =
+        assignments.length;
+
+
+    const completed =
+        assignments.filter(function(a) {
+
+            return a.completed;
+
+        }).length;
+
+
+    const pending =
+        total - completed;
+
+
+    const overdue =
+        assignments.filter(function(a) {
+
+            return isOverdue(a);
+
+        }).length;
+
+
+    document
+    .getElementById("total")
+    .innerText = total;
+
+
+    document
+    .getElementById("pending")
+    .innerText = pending;
+
+
+    document
+    .getElementById("completed")
+    .innerText = completed;
+
+
+    document
+    .getElementById("overdue")
+    .innerText = overdue;
+
+}
+
+
+/* START APP */
+
+displayAssignments();
+
+updateDashboard();
+
+</script>
+
+</body>
+</html>
