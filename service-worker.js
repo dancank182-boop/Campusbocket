@@ -1,5 +1,5 @@
 
-const CACHE_NAME = "campuspocket-v3";
+const CACHE_NAME = "campuspocket-v4";
 
 const APP_FILES = [
   "./",
