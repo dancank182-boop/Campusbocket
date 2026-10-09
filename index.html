@@ -1,7 +1,8 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#1457d9">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#1457d9">
@@ -283,5 +284,12 @@ function resetData(){
 
 renderAssignments();renderDashboard();renderClasses();renderNotes();renderFees();
 </script>
-</body>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js")
+      .catch(error => console.error("Service worker registration failed:", error));
+  });
+}
+</script></body>
 </html>
