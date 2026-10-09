@@ -1,17 +1,205 @@
+
+
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#111a36"><meta name="description" content="CampusPocket — your student life, organized"><title>CampusPocket</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#111a36">
+<title>CampusPocket</title>
 <style>
-:root{--navy:#111a36;--blue:#5967f5;--mint:#58d8c6;--ink:#1a2440;--muted:#7b86a0;--bg:#f4f6fc;--line:#e7eaf3;--white:#fff;--shadow:0 10px 28px #1b28500b}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;padding-bottom:88px}button,input,select,textarea{font:inherit}button{cursor:pointer}.top{background:var(--navy);color:#fff;padding:18px 18px 25px;border-radius:0 0 28px 28px;position:relative;overflow:hidden}.top:after{content:"";position:absolute;width:210px;height:210px;border-radius:50%;right:-80px;top:-125px;background:linear-gradient(135deg,#5967f5aa,#58d8c655)}.toprow,.brand,.rowbetween{display:flex;align-items:center;justify-content:space-between;gap:12px;position:relative}.brand{justify-content:flex-start;font-weight:850;font-size:19px;letter-spacing:-.5px}.logo{width:40px;height:40px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--blue),#a38bff);font-size:22px;box-shadow:0 8px 22px #5967f544}.tag{font-size:9px;letter-spacing:1.5px;color:#b8c3e4;margin-top:2px}.gear{width:42px;height:42px;border-radius:14px;border:1px solid #ffffff28;background:#ffffff12;color:#fff;font-size:20px}.welcome{margin-top:25px;position:relative}.eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:1.7px;color:#aebbe1;font-weight:800}.welcome h1{font-size:27px;line-height:1.16;letter-spacing:-.9px;margin:8px 0}.welcome p{font-size:12px;color:#c5cde7;margin:0}.chips{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}.chiphero{border:1px solid #ffffff1e;background:#ffffff12;border-radius:99px;padding:8px 11px;font-size:11px}.wrap{max-width:850px;margin:auto;padding:16px 14px}.page{display:none}.page.active{display:block;animation:in .18s ease-out}@keyframes in{from{opacity:.5;transform:translateY(4px)}to{opacity:1;transform:none}}.heading{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin:5px 2px 14px}.heading h2{font-size:22px;letter-spacing:-.7px;margin:0}.heading p{font-size:12px;color:var(--muted);line-height:1.5;margin:5px 0 0}.badge{font-size:10px;font-weight:850;border-radius:99px;background:#edf0ff;color:#4d5de5;padding:6px 9px;white-space:nowrap}.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}.stat,.card{background:var(--white);border:1px solid var(--line);border-radius:19px;box-shadow:var(--shadow)}.stat{padding:14px;min-width:0}.stathead{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:1px;font-weight:850}.iconbox{width:36px;height:36px;border-radius:12px;background:#edf0ff;display:grid;place-items:center;font-size:18px}.stat:nth-child(2) .iconbox{background:#e1faf4}.stat:nth-child(3) .iconbox{background:#f1eaff}.stat:nth-child(4) .iconbox{background:#fff1dc}.stat strong{display:block;font-size:25px;letter-spacing:-.8px;margin:10px 0 2px;overflow-wrap:anywhere}.stat small{font-size:10px;color:var(--muted)}.card{padding:15px;margin:12px 0}.cardtitle{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}.cardtitle h3{font-size:14px;margin:0}.quickgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:14px 0}.quick{border:1px solid var(--line);border-radius:15px;background:#fff;padding:12px 2px;color:var(--ink);font-size:10px;font-weight:800;box-shadow:var(--shadow)}.quick span{display:grid;place-items:center;width:34px;height:34px;margin:0 auto 7px;border-radius:12px;background:#edf0ff;font-size:18px}.quick:nth-child(2) span{background:#e1faf4}.quick:nth-child(3) span{background:#f1eaff}.quick:nth-child(4) span{background:#fff1dc}.progress{height:8px;background:#edf0f8;border-radius:99px;overflow:hidden;margin:13px 0 8px}.progress div{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--mint));border-radius:99px;transition:width .2s}.mutedline{font-size:11px;color:var(--muted);line-height:1.6}.progressmeta{display:flex;justify-content:space-between;gap:8px;font-size:10px;color:var(--muted)}.btn{border:0;border-radius:12px;background:var(--blue);color:#fff;padding:11px 14px;font-size:12px;font-weight:800;box-shadow:0 5px 14px #5967f522}.btn.soft{background:#edf0ff;color:#4d5de5;box-shadow:none}.btn.dark{background:var(--navy);box-shadow:none}.btn.danger{background:#ffedf0;color:#bd3652;box-shadow:none}.btn.small{padding:7px 9px;font-size:10px}.btn.full{width:100%}.field{display:grid;gap:6px;margin-bottom:12px}.field label{font-size:11px;color:#596580;font-weight:800}.field input,.field select,.field textarea,.search{width:100%;min-width:0;border:1px solid #e0e5f1;border-radius:12px;background:#fbfcff;padding:12px;color:var(--ink);font-size:13px;outline:none}.field textarea{min-height:110px;resize:vertical;line-height:1.5}.field input:focus,.field select:focus,.field textarea:focus,.search:focus{border-color:var(--blue);box-shadow:0 0 0 3px #5967f51a}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}.search{background:#fff;margin:0 0 12px}.item{padding:13px 0;border-bottom:1px solid var(--line)}.item:last-child{border-bottom:0;padding-bottom:0}.itemtop{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}.item strong{font-size:13px;overflow-wrap:anywhere}.item p{font-size:11px;line-height:1.55;color:var(--muted);margin:5px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}.pill{font-size:10px;font-weight:800;border-radius:99px;background:#edf0ff;color:#4d5de5;padding:5px 8px;white-space:nowrap}.pill.green{background:#e4f8ee;color:#16744e}.pill.red{background:#ffebef;color:#c33752}.pill.amber{background:#fff2dc;color:#986314}.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.empty{text-align:center;padding:24px 8px;color:var(--muted);font-size:12px;line-height:1.6}.empty b{display:block;font-size:28px;margin-bottom:6px}.filegrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.filepick{display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;padding:12px 6px;border:1px dashed #b8c4e2;border-radius:13px;background:#f8f9ff;color:#4d5de5;font-size:11px;font-weight:800;cursor:pointer}.filepick input{display:none}.attachlist{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}.attach{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);background:#fafbff;padding:8px 9px;border-radius:10px;font-size:10px;color:var(--ink);max-width:100%;overflow-wrap:anywhere}.attach button{border:0;background:transparent;color:#c33752;font-weight:900}.hint{font-size:10px;color:var(--muted);line-height:1.6;margin:8px 0 0}.notice{background:#fff4de;color:#79591d;padding:12px;border-radius:13px;font-size:11px;line-height:1.6;margin:12px 0}.nav{position:fixed;z-index:30;bottom:0;left:0;right:0;display:flex;justify-content:center;padding:7px 4px calc(7px + env(safe-area-inset-bottom));background:#fffffff0;backdrop-filter:blur(16px);border-top:1px solid var(--line);box-shadow:0 -7px 24px #1723470b}.navinner{width:100%;max-width:850px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:3px}.navbtn{border:0;border-radius:13px;background:transparent;color:#8390aa;padding:7px 1px 5px;font-size:9px;font-weight:850;min-width:0}.navbtn .ni{display:block;font-size:18px;margin-bottom:4px}.navbtn.active{background:#edf0ff;color:#4d5de5}.hidden{display:none!important}.foot{text-align:center;font-size:10px;color:#9aa4b9;padding:16px}.toast{position:fixed;z-index:50;left:50%;bottom:90px;transform:translate(-50%,10px);opacity:0;pointer-events:none;background:var(--navy);color:white;padding:11px 15px;border-radius:12px;font-size:12px;max-width:90vw;text-align:center;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}@media(min-width:650px){.top{padding:22px 28px 28px}.wrap{padding:22px 24px}.stats{grid-template-columns:repeat(4,minmax(0,1fr))}.welcome h1{font-size:33px}}
-</style></head>
-<body><header class="top"><div class="toprow"><div class="brand"><div class="logo">✦</div><div>CampusPocket<div class="tag">YOUR STUDENT SPACE</div></div></div><button class="gear" onclick="go('settings')" aria-label="Settings">⚙</button></div><div class="welcome"><div class="eyebrow">A little more organized</div><h1 id="greeting">Make room for your goals.</h1><p id="todayText">Classes, notes and deadlines in one place.</p><div class="chips"><span class="chiphero">📚 Study smarter</span><span class="chiphero">✨ One step at a time</span></div></div></header>
-<main class="wrap">
-<section class="page active" id="home"><div class="heading"><div><h2>Your overview</h2><p>Everything for campus, at a glance.</p></div><span class="badge">MY SPACE</span></div><div class="stats"><div class="stat"><div class="stathead">To do <span class="iconbox">📝</span></div><strong id="statTasks">0</strong><small>Pending assignments</small></div><div class="stat"><div class="stathead">Schedule <span class="iconbox">🗓️</span></div><strong id="statClasses">0</strong><small>Saved classes</small></div><div class="stat"><div class="stathead">Revision <span class="iconbox">💡</span></div><strong id="statNotes">0</strong><small>Study notes</small></div><div class="stat"><div class="stathead">Money <span class="iconbox">💳</span></div><strong id="statFees">0</strong><small>Fee entries</small></div></div><div class="quickgrid"><button class="quick" onclick="go('assignments')"><span>✍️</span>Assignments</button><button class="quick" onclick="go('timetable')"><span>📆</span>Timetable</button><button class="quick" onclick="go('notes')"><span>📒</span>Study notes</button><button class="quick" onclick="go('files')"><span>📎</span>My files</button></div><div class="card"><div class="cardtitle"><h3>Assignment progress</h3><span class="badge" id="progressLabel">0%</span></div><div class="progress"><div id="progressBar"></div></div><div class="progressmeta"><span id="progressText">Add your first assignment.</span><span id="progressCount">0 / 0</span></div></div><div class="card"><div class="cardtitle"><h3>⏳ Upcoming deadlines</h3><button class="btn soft small" onclick="go('assignments')">View all</button></div><div id="upcoming"></div></div><div class="card"><div class="cardtitle"><h3>📍 Today's timetable</h3><button class="btn soft small" onclick="go('timetable')">View week</button></div><div id="todayClasses"></div></div></section>
-<section class="page" id="assignments"><div class="heading"><div><h2>Assignments</h2><p>Keep deadlines from sneaking up on you.</p></div><span class="badge" id="assignmentCount">0 tasks</span></div><div class="card"><div class="cardtitle"><h3 id="assignmentFormTitle">＋ Add assignment</h3><button class="btn soft small hidden" id="cancelAssignment" type="button" onclick="resetForm('assignment')">Cancel edit</button></div><form id="assignmentForm"><input id="assignmentId" type="hidden"><div class="field"><label for="assignmentTitle">Assignment title *</label><input id="assignmentTitle" required maxlength="140" placeholder="e.g. Pharmacology CAT"></div><div class="grid2"><div class="field"><label for="assignmentCourse">Course / unit</label><input id="assignmentCourse" maxlength="100" placeholder="e.g. Midwifery I"></div><div class="field"><label for="assignmentDue">Due date</label><input id="assignmentDue" type="date"></div></div><div class="field"><label for="assignmentPriority">Priority</label><select id="assignmentPriority"><option>Normal</option><option>High</option><option>Low</option></select></div><div class="field"><label>Attach photos, camera images or PDFs</label><div class="filegrid"><label class="filepick">📷 Take photo<input id="assignmentCamera" type="file" accept="image/*" capture="environment"></label><label class="filepick">🖼️ Choose images<input id="assignmentImages" type="file" accept="image/*" multiple></label><label class="filepick">📄 Add PDF<input id="assignmentPdfs" type="file" accept="application/pdf,.pdf" multiple></label><button class="filepick" type="button" onclick="clearPending('assignment')">✕ Clear new files</button></div><div id="assignmentPending" class="attachlist"></div><p class="hint">Photos are compressed when possible. PDFs up to 8 MB each are supported.</p></div><button class="btn full" type="submit">Save assignment</button></form></div><input class="search" id="assignmentSearch" placeholder="🔎 Search assignments or units" oninput="renderAssignments()"><div class="card"><div id="assignmentList"></div></div></section>
-<section class="page" id="timetable"><div class="heading"><div><h2>Timetable</h2><p>Plan lectures, practicals and study sessions.</p></div><span class="badge">WEEKLY</span></div><div class="card"><div class="cardtitle"><h3 id="classFormTitle">＋ Add class</h3><button class="btn soft small hidden" id="cancelClass" type="button" onclick="resetForm('class')">Cancel edit</button></div><form id="classForm"><input id="classId" type="hidden"><div class="field"><label for="classTitle">Class / unit *</label><input id="classTitle" required maxlength="140" placeholder="e.g. Medical-Surgical Nursing"></div><div class="grid2"><div class="field"><label for="classDay">Day</label><select id="classDay"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option></select></div><div class="field"><label for="classVenue">Venue</label><input id="classVenue" maxlength="100" placeholder="e.g. Skills lab"></div><div class="field"><label for="classStart">Starts</label><input id="classStart" type="time"></div><div class="field"><label for="classEnd">Ends</label><input id="classEnd" type="time"></div></div><button class="btn full" type="submit">Save class</button></form></div><div class="card"><div class="cardtitle"><h3>Weekly schedule</h3><span class="badge" id="classCount">0 classes</span></div><div id="classList"></div></div></section>
-<section class="page" id="notes"><div class="heading"><div><h2>Study notes</h2><p>Your personal revision library.</p></div><span class="badge" id="noteCount">0 notes</span></div><div class="card"><div class="cardtitle"><h3 id="noteFormTitle">✎ Write a note</h3><button class="btn soft small hidden" id="cancelNote" type="button" onclick="resetForm('note')">Cancel edit</button></div><form id="noteForm"><input id="noteId" type="hidden"><div class="field"><label for="noteTitle">Note title *</label><input id="noteTitle" required maxlength="140" placeholder="e.g. Drug interactions"></div><div class="field"><label for="noteCourse">Course / topic</label><input id="noteCourse" maxlength="100" placeholder="e.g. Pharmacology"></div><div class="field"><label for="noteContent">Your notes *</label><textarea id="noteContent" required maxlength="30000" placeholder="Write your revision points here..."></textarea></div><div class="field"><label>Attach a photo, camera image or PDF</label><div class="filegrid"><label class="filepick">📷 Take photo<input id="noteCamera" type="file" accept="image/*" capture="environment"></label><label class="filepick">🖼️ Choose images<input id="noteImages" type="file" accept="image/*" multiple></label><label class="filepick">📄 Add PDF<input id="notePdfs" type="file" accept="application/pdf,.pdf" multiple></label><button class="filepick" type="button" onclick="clearPending('note')">✕ Clear new files</button></div><div id="notePending" class="attachlist"></div></div><button class="btn full" type="submit">Save note</button></form></div><input class="search" id="noteSearch" placeholder="🔎 Search notes or topics" oninput="renderNotes()"><div id="noteList"></div></section>
-<section class="page" id="fees"><div class="heading"><div><h2>Fee tracker</h2><p>Your personal record of charges and payments.</p></div><span class="badge">KES</span></div><div class="stats"><div class="stat"><div class="stathead">Total listed <span class="iconbox">🧾</span></div><strong id="feeTotal">KES 0</strong><small>All fee entries</small></div><div class="stat"><div class="stathead">Marked paid <span class="iconbox">✅</span></div><strong id="feePaid">KES 0</strong><small>Entries marked paid</small></div></div><div class="card"><div class="cardtitle"><h3 id="feeFormTitle">＋ Add fee entry</h3><button class="btn soft small hidden" id="cancelFee" type="button" onclick="resetForm('fee')">Cancel edit</button></div><form id="feeForm"><input id="feeId" type="hidden"><div class="field"><label for="feeTitle">Description *</label><input id="feeTitle" required maxlength="140" placeholder="e.g. Tuition trimester 1"></div><div class="grid2"><div class="field"><label for="feeAmount">Amount (KES) *</label><input id="feeAmount" type="number" min="0" step=".01" required placeholder="66500"></div><div class="field"><label for="feeStatus">Status</label><select id="feeStatus"><option>Unpaid</option><option>Paid</option><option>Partial</option></select></div></div><div class="field"><label for="feeDate">Date</label><input id="feeDate" type="date"></div><button class="btn full" type="submit">Save fee entry</button></form></div><div class="card"><div class="cardtitle"><h3>Fee records</h3><span class="badge" id="feeCount">0 entries</span></div><div id="feeList"></div></div></section>
-<section class="page" id="files"><div class="heading"><div><h2>My files</h2><p>Photos and PDFs attached to assignments and notes.</p></div><span class="badge" id="fileCount">0 files</span></div><div class="card"><div class="cardtitle"><h3>📚 Attachment library</h3></div><p class="hint">Files attached to a saved assignment or note appear here.</p><div id="allFiles"></div></div><div class="notice">Records stay in this browser on this device. Export a backup before changing phones or clearing browser/app storage.</div></section>
-<section class="page" id="settings"><div class="heading"><div><h2>Settings & backup</h2><p>Keep your study records safe.</p></div><span class="badge">LOCAL</span></div><div class="card"><div class="cardtitle"><h3>💾 Backup and restore</h3></div><p class="hint">Export a backup of assignments, timetable, notes, fees and attached files.</p><button class="btn full" onclick="exportBackup()">Export full backup</button><div class="field" style="margin-top:14px"><label for="backupFile">Choose backup (.json)</label><input id="backupFile" type="file" accept=".json,application/json"></div><button class="btn soft full" onclick="importBackup()">Restore from backup</button><p class="hint">Restoring replaces current records. Export current data first.</p></div><div class="card"><div class="cardtitle"><h3>📴 Offline and storage</h3></div><div class="rowbetween"><span class="mutedline">Local record storage</span><b id="storageStatus" class="mutedline">Checking…</b></div><div class="rowbetween" style="margin-top:10px"><span class="mutedline">Offline app support</span><b id="offlineStatus" class="mutedline">Checking…</b></div><button class="btn soft full" style="margin-top:12px" onclick="checkStatus()">Check status</button></div><div class="card"><div class="cardtitle"><h3>🛡️ Privacy</h3></div><p class="hint">CampusPocket is a personal organizer, not an official university portal. It does not upload your records to a server. Anyone using this browser profile may be able to access them.</p></div><div class="card"><div class="cardtitle"><h3>⚠️ Clear all records</h3></div><p class="hint">Only use this if you deliberately want to remove all assignments, classes, notes, fees and attachments.</p><button class="btn danger full" onclick="clearAll()">Delete all records</button></div></section><div class="foot">CampusPocket · Made for your next step ✦</div></main>
-<nav class="nav" aria-label="Main navigation"><div class="na
+:root{--navy:#111a36;--blue:#5967f5;--mint:#58d8c6;--bg:#f3f5fc;--ink:#202944;--muted:#7b86a0;--line:#e5e9f3}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,Arial,sans-serif;padding-bottom:85px}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+header{background:linear-gradient(135deg,#111a36,#303c75 75%,#5967f5);color:white;padding:23px 18px 27px;border-radius:0 0 28px 28px}
+.brand{display:flex;align-items:center;gap:11px;font-size:20px;font-weight:850}
+.logo{background:linear-gradient(135deg,#5967f5,#58d8c6);border-radius:14px;padding:10px;font-size:22px}
+.tag{font-size:9px;letter-spacing:2px;color:#c6d0f4}
+header h1{font-size:28px;line-height:1.2;margin:26px 0 8px}
+header p{font-size:12px;color:#d4dcf7}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chips span{font-size:11px;background:#ffffff19;padding:8px 11px;border-radius:20px}
+main{max-width:760px;margin:auto;padding:15px}
+.page{display:none}.page.active{display:block}
+h2{font-size:22px;margin:8px 0 4px}
+.sub{font-size:12px;color:var(--muted);margin:0 0 15px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat,.card{background:white;border:1px solid var(--line);border-radius:18px;padding:15px;margin-bottom:12px;box-shadow:0 8px 24px #1b285009}
+.stat small{color:var(--muted);font-size:10px}
+.stat strong{display:block;font-size:26px;margin-top:8px}
+.stat span{font-size:20px}
+.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}
+.quick button{background:white;border:1px solid var(--line);border-radius:14px;padding:12px 2px;font-size:10px;font-weight:750}
+.quick b{display:block;font-size:22px;margin-bottom:5px}
+label{display:block;font-size:11px;font-weight:750;color:#596580;margin:12px 0 5px}
+input,select,textarea{width:100%;border:1px solid #dfe4f0;border-radius:11px;background:#fbfcff;padding:11px;font-size:13px;color:var(--ink)}
+textarea{min-height:100px;resize:vertical}
+.btn{border:0;border-radius:11px;background:var(--blue);color:white;padding:11px 14px;font-size:12px;font-weight:800;margin-top:10px}
+.soft{background:#edf0ff;color:#4d5de5}
+.danger{background:#ffedf0;color:#bd3652}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.row>*{flex:1;min-width:0}
+.item{border-top:1px solid var(--line);padding:13px 0}
+.item strong{font-size:13px;overflow-wrap:anywhere}
+.item p{font-size:11px;color:var(--muted);line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
+.pill{display:inline-block;background:#edf0ff;color:#4d5de5;border-radius:20px;padding:5px 8px;font-size:10px}
+.empty{text-align:center;color:var(--muted);font-size:12px;padding:20px}
+nav{position:fixed;bottom:0;left:0;right:0;background:#fffffff2;backdrop-filter:blur(12px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding:7px 3px calc(7px + env(safe-area-inset-bottom));z-index:5}
+nav button{border:0;background:none;border-radius:12px;color:#7b86a0;font-size:9px;padding:7px 1px;font-weight:800}
+nav button span{display:block;font-size:19px;margin-bottom:3px}
+nav button.active{background:#edf0ff;color:#4d5de5}
+.note{font-size:11px;line-height:1.6;color:var(--muted)}
+.filelabel{display:block;border:1px dashed #aeb9dd;background:#f8f9ff;color:#4d5de5;text-align:center;border-radius:12px;padding:13px;font-size:12px;font-weight:800;margin-top:9px}
+@media(min-width:600px){.stats{grid-template-columns:repeat(4,1fr)}main{padding:22px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="brand"><div class="logo">✦</div><div>CampusPocket<div class="tag">YOUR STUDENT SPACE</div></div></div>
+ <h1 id="greeting">Make room for your goals.</h1>
+ <p id="today"></p>
+ <div class="chips"><span>📚 Study smarter</span><span>✨ One step at a time</span></div>
+</header>
+<main>
+<section class="page active" id="home">
+ <h2>Your overview</h2><p class="sub">Everything for campus, at a glance.</p>
+ <div class="stats">
+  <div class="stat"><span>📝</span><small>Assignments</small><strong id="sAssignments">0</strong></div>
+  <div class="stat"><span>🗓️</span><small>Classes</small><strong id="sClasses">0</strong></div>
+  <div class="stat"><span>💡</span><small>Study notes</small><strong id="sNotes">0</strong></div>
+  <div class="stat"><span>💳</span><small>Fee entries</small><strong id="sFees">0</strong></div>
+ </div>
+ <div class="quick">
+  <button onclick="go('assignments')"><b>✍️</b>Tasks</button>
+  <button onclick="go('timetable')"><b>📆</b>Classes</button>
+  <button onclick="go('notes')"><b>📒</b>Notes</button>
+  <button onclick="go('fees')"><b>💰</b>Fees</button>
+ </div>
+ <div class="card"><strong>Welcome to your study space ✨</strong><p class="note">Keep track of your deadlines, lessons, revision and expenses in one place. Your records are saved in this browser on this device.</p></div>
+ <div class="card"><strong>Upcoming assignments</strong><div id="upcoming"></div></div>
+</section>
+
+<section class="page" id="assignments">
+ <h2>Assignments ✍️</h2><p class="sub">Track your coursework and deadlines.</p>
+ <div class="card"><form id="assignmentForm">
+   <input type="hidden" id="aId">
+   <label>Assignment title</label><input id="aTitle" required placeholder="e.g. Pharmacology assignment">
+   <label>Course / unit</label><input id="aCourse" placeholder="e.g. Pharmacology II">
+   <div class="row"><div><label>Due date</label><input id="aDue" type="date"></div><div><label>Priority</label><select id="aPriority"><option>Normal</option><option>High</option><option>Urgent</option></select></div></div>
+   <label>Attach photos or PDFs</label><input id="aFiles" type="file" accept="image/*,.pdf,application/pdf" multiple>
+   <label class="filelabel">📷 Take a photo<input id="aCamera" type="file" accept="image/*" capture="environment"></label>
+   <p class="note">Camera availability depends on your browser and phone permissions.</p>
+   <button class="btn" type="submit">Save assignment</button>
+   <button class="btn soft" type="button" onclick="resetForm('assignmentForm')">Clear form</button>
+ </form></div>
+ <input id="aSearch" placeholder="Search assignments..." oninput="render()">
+ <div class="card" id="assignmentList"></div>
+</section>
+
+<section class="page" id="timetable">
+ <h2>My timetable 🗓️</h2><p class="sub">Organize your lessons and practicals.</p>
+ <div class="card"><form id="classForm">
+  <input type="hidden" id="cId">
+  <label>Class / unit</label><input id="cTitle" required placeholder="e.g. Medical-Surgical Nursing">
+  <label>Day</label><select id="cDay"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option></select>
+  <div class="row"><div><label>Start time</label><input id="cStart" type="time" required></div><div><label>End time</label><input id="cEnd" type="time" required></div></div>
+  <label>Venue</label><input id="cVenue" placeholder="Lecture room / lab">
+  <button class="btn" type="submit">Save class</button><button class="btn soft" type="button" onclick="resetForm('classForm')">Clear</button>
+ </form></div><div class="card" id="classList"></div>
+</section>
+
+<section class="page" id="notes">
+ <h2>Study notes 💡</h2><p class="sub">Keep your revision material close.</p>
+ <div class="card"><form id="noteForm">
+  <input type="hidden" id="nId">
+  <label>Note title</label><input id="nTitle" required placeholder="e.g. Signs of shock">
+  <label>Course / unit</label><input id="nCourse" placeholder="e.g. Fundamentals of Nursing">
+  <label>Write your notes</label><textarea id="nContent" required placeholder="Write your revision notes here..."></textarea>
+  <label>Attach photos or PDFs</label><input id="nFiles" type="file" accept="image/*,.pdf,application/pdf" multiple>
+  <label class="filelabel">📷 Take a photo<input id="nCamera" type="file" accept="image/*" capture="environment"></label>
+  <button class="btn" type="submit">Save note</button><button class="btn soft" type="button" onclick="resetForm('noteForm')">Clear form</button>
+ </form></div>
+ <input id="nSearch" placeholder="Search notes..." oninput="render()"><div class="card" id="noteList"></div>
+</section>
+
+<section class="page" id="files">
+ <h2>My files 📎</h2><p class="sub">Open attachments saved with assignments and notes.</p>
+ <div class="card" id="fileList"></div>
+</section>
+
+<section class="page" id="fees">
+ <h2>Fee tracker 💳</h2><p class="sub">Keep a personal record of your charges and payments.</p>
+ <div class="card"><form id="feeForm">
+  <input type="hidden" id="fId">
+  <label>Fee description</label><input id="fTitle" required placeholder="e.g. Tuition, attachment">
+  <label>Amount (KSh)</label><input id="fAmount" type="number" min="0" step="0.01" required>
+  <label>Payment status</label><select id="fStatus"><option>Unpaid</option><option>Partial</option><option>Paid</option></select>
+  <label>Date</label><input id="fDate" type="date">
+  <button class="btn" type="submit">Save fee entry</button><button class="btn soft" type="button" onclick="resetForm('feeForm')">Clear</button>
+ </form></div>
+ <div class="card"><strong id="feeSummary">Total: KSh 0</strong><div id="feeList"></div></div>
+</section>
+
+<section class="page" id="settings">
+ <h2>Settings ⚙️</h2><p class="sub">Manage your data and backups.</p>
+ <div class="card"><strong>Backup your records</strong><p class="note">Export assignments, timetable, notes, fees and attachments into a JSON backup file. Keep it somewhere safe.</p>
+  <button class="btn" onclick="backup()">Export backup</button>
+  <label>Restore from backup</label><input type="file" id="restoreFile" accept=".json,application/json">
+  <button class="btn soft" onclick="restore()">Restore backup</button>
+ </div>
+ <div class="card"><strong>Privacy and storage</strong><p class="note">Your information is stored locally in this browser. It does not automatically sync to another phone or browser. Export backups regularly.</p><button class="btn danger" onclick="clearData()">Delete all records</button></div>
+ <div class="card"><strong>CampusPocket</strong><p class="note">Student organizer · Assignments · Timetable · Notes · Fees · Attachments</p></div>
+</section>
+</main>
+
+<nav>
+ <button class="active" data-page="home" onclick="go('home')"><span>⌂</span>Home</button>
+ <button data-page="assignments" onclick="go('assignments')"><span>📝</span>Tasks</button>
+ <button data-page="timetable" onclick="go('timetable')"><span>🗓️</span>Classes</button>
+ <button data-page="notes" onclick="go('notes')"><span>📒</span>Notes</button>
+ <button data-page="files" onclick="go('files')"><span>📎</span>Files</button>
+</nav>
+
+<script>
+const KEY='campuspocket_v2_records';
+const blank=()=>({assignments:[],classes:[],notes:[],fees:[]});
+let data;
+try{data=JSON.parse(localStorage.getItem(KEY))||blank()}catch(e){data=blank()}
+for(const k of ['assignments','classes','notes','fees'])if(!Array.isArray(data[k]))data[k]=[];
+const $=id=>document.getElementById(id);
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,8);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money=n=>'KSh '+Number(n||0).toLocaleString('en-KE');
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(data));render();return true}catch(e){alert('Storage is full. Export a backup and remove large attachments before trying again.');return false}}
+function go(id){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));window.scrollTo(0,0)}
+function resetForm(id){$(id).reset();const h=$(id).querySelector('input[type=hidden]');if(h)h.value='';if(id==='feeForm')$('fDate').value=new Date().toISOString().slice(0,10)}
+function fileData(file){return new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve({id:uid(),name:file.name||'Photo',type:file.type||'application/octet-stream',data:r.result});r.onerror=reject;r.readAsDataURL(file)})}
+async function readFiles(ids){let out=[];for(const id of ids){for(const f of $(id).files){if(f.size>2*1024*1024){alert(f.name+' is over 2 MB. Please use a smaller file.');continue}out.push(await fileData(f))}}return out}
+function attachmentsHtml(items){return (items||[]).map(f=>'<div class="item"><strong>'+((f.type||'').startsWith('image/')?'🖼️ ':'📄 ')+esc(f.name)+'</strong><br><button class="btn soft" onclick="openFile(\''+f.id+'\')">Open attachment</button></div>').join('')}
+function openFile(id){let f;for(const k of ['assignments','notes'])for(const r of data[k])for(const x of r.attachments||[])if(x.id===id)f=x;if(!f)return alert('File not found');let w=window.open();if(!w)return alert('Allow pop-ups to open this attachment');if((f.type||'').startsWith('image/'))w.document.write('<img style="max-width:100%;height:auto" src="'+f.data+'">');else w.location.href=f.data}
+$('assignmentForm').onsubmit=async e=>{e.preventDefault();let id=$('aId').value||uid(),old=data.assignments.find(x=>x.id===id);let attachments=[...(old?.attachments||[]),...await readFiles(['aFiles','aCamera'])];let r={id,title:$('aTitle').value.trim(),course:$('aCourse').value.trim(),due:$('aDue').value,priority:$('aPriority').value,done:old?.done||false,attachments};let i=data.assignments.findIndex(x=>x.id===id);if(i<0)data.assignments.push(r);else data.assignments[i]=r;if(persist())resetForm('assignmentForm')};
+$('classForm').onsubmit=e=>{e.preventDefault();let id=$('cId').value||uid(),r={id,title:$('cTitle').value.trim(),day:$('cDay').value,start:$('cStart').value,end:$('cEnd').value,venue:$('cVenue').value.trim()};let i=data.classes.findIndex(x=>x.id===id);if(i<0)data.classes.push(r);else data.classes[i]=r;if(persist())resetForm('classForm')};
+$('noteForm').onsubmit=async e=>{e.preventDefault();let id=$('nId').value||uid(),old=data.notes.find(x=>x.id===id);let attachments=[...(old?.attachments||[]),...await readFiles(['nFiles','nCamera'])];let r={id,title:$('nTitle').value.trim(),course:$('nCourse').value.trim(),content:$('nContent').value.trim(),attachments};let i=data.notes.findIndex(x=>x.id===id);if(i<0)data.notes.push(r);else data.notes[i]=r;if(persist())resetForm('noteForm')};
+$('feeForm').onsubmit=e=>{e.preventDefault();let id=$('fId').value||uid(),r={id,title:$('fTitle').value.trim(),amount:Number($('fAmount').value),status:$('fStatus').value,date:$('fDate').value};let i=data.fees.findIndex(x=>x.id===id);if(i<0)data.fees.push(r);else data.fees[i]=r;if(persist())resetForm('feeForm')};
+function editRecord(k,id){let r=data[k].find(x=>x.id===id);if(!r)return;let map={assignments:['aId','aTitle','aCourse','aDue','aPriority'],classes:['cId','cTitle','cVenue'],notes:['nId','nTitle','nCourse','nContent'],fees:['fId','fTitle','fAmount','fStatus','fDate']}[k];let vals=k==='assignments'?[r.id,r.title,r.course,r.due,r.priority]:k==='classes'?[r.id,r.title,r.venue]:k==='notes'?[r.id,r.title,r.course,r.content]:[r.id,r.title,r.amount,r.status,r.date];map.forEach((id,i)=>$(id).value=vals[i]??'');if(k==='classes'){$('cDay').value=r.day;$('cStart').value=r.start;$('cEnd').value=r.end}go(({assignments:'assignments',classes:'timetable',notes:'notes',fees:'fees'})[k])}
+function del(k,id){if(confirm('Delete this record?')){data[k]=data[k].filter(x=>x.id!==id);persist()}}
+function render(){
+$('sAssignments').textContent=data.assignments.filter(x=>!x.done).length;$('sClasses').textContent=data.classes.length;$('sNotes').textContent=data.notes.length;$('sFees').textContent=data.fees.length;
+const a=data.assignments.filter(x=>(x.title+' '+x.course).toLowerCase().includes(($('aSearch')?.value||'').toLowerCase()));
+$('assignmentList').innerHTML=a.length?a.map(x=>'<div class="item"><strong>'+esc(x.title)+'</strong> <span class="pill">'+esc(x.priority)+'</span><p>'+esc(x.course)+' · Due: '+esc(x.due||'Not set')+' · '+(x.done?'Completed':'Pending')+'</p>'+attachmentsHtml(x.attachments)+'<button class="btn soft" onclick="toggleDone(\''+x.id+'\')">'+(x.done?'Mark pending':'Mark complete')+'</button> <button class="btn soft" onclick="editRecord(\'assignments\',\''+x.id+'\')">Edit</button> <button class="btn danger" onclick="del(\'assignments\',\''+x.id+'\')">Delete</button></div>').join(''):'<div class="empty">No assignments yet. Add your first task above.</div>';
+$('upcoming').innerHTML=data.assignments.filter(x=>!x.done).sort((a,b)=>(a.due||'9999').localeCompare(b.due||'9999')).slice(0,4).map(x=>'<div class="item"><strong>'+esc(x.title)+'</strong><p>Due: '+esc(x.due||'No deadline set')+'</p></div>').join('')||'<div class="empty">You are all caught up!</div>';
+let days=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];$('classList').innerHTML=data.classes.length?days.map(d=>data.classes.filter(x=>x.day===d).sort((a,b)=>a.start.localeCompare(b.start)).map(x=>'<div class="item"><span class="pill">'+d+'</span><p>'+esc(x.start)+'–'+esc(x.end)+'</p><strong>'+esc(x.title)+'</strong><p>'+esc(x.venue)+'</p><button class="btn soft" onclick="editRecord(\'classes\',\''+x.id+'\')">Edit</button> <button class="btn danger" onclick="del(\'classes\',\''+x.id+'\')">Delete</button></div>').join('')).join(''):'<div class="empty">Your timetable is empty.</div>';
+const ns=data.notes.filter(x=>(x.title+' '+x.course+' '+x.content).toLowerCase().includes(($('nSearch')?.value||'').toLowerCase()));
+$('noteList').innerHTML=ns.length?ns.map(x=>'<div class="item"><strong>'+esc(x.title)+'</strong><p>'+esc(x.course)+'</p><p>'+esc(x.content)+'</p>'+attachmentsHtml(x.attachments)+'<button class="btn soft" onclick="editRecord(\'notes\',\''+x.id+'\')">Edit</button> <button class="btn danger" onclick="del(\'notes\',\''+x.id+'\')">Delete</button></div>').join(''):'<div class="empty">No notes saved yet.</div>';
+$('feeSummary').textContent='Total recorded: '+money(data.fees.reduce((s,x)=>s+Number(x.amount||0),0));
+$('feeList').innerHTML=data.fees.length?data.fees.map(x=>'<div class="item"><strong>'+esc(x.title)+'</strong> <span class="pill">'+esc(x.status)+'</span><p>'+esc(money(x.amount))+' · '+esc(x.date||'No date')+'</p><button class="btn soft" onclick="editRecord(\'fees\',\''+x.id+'\')">Edit</button> <button class="btn danger" onclick="del(\'fees\',\''+x.id+'\')">Delete</button></div>').join(''):'<div class="empty">No fee entries yet.</div>';
+let files=[];for(const k of ['assignments','notes'])for(const r of data[k])for(const f of r.attachments||[])files.push({f,owner:r.title});
+$('fileList').innerHTML=files.length?files.map(x=>'<div class="item"><strong>'+esc(x.f.name)+'</strong><p>Attached to: '+esc(x.owner)+'</p><button class="btn soft" onclick="openFile(\''+x.f.id+'\')">Open file</button></div>').join(''):'<div class="empty">Your attachments will appear here.</div>';
+}
+function toggleDone(id){let x=data.assignments.find(x=>x.id===id);if(x)x.done=!x.done;persist()}
+function backup(){let blob=new Blob([JSON.stringify({app:'CampusPocket',version:1,data})],{type:'application/json'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='CampusPocket-backup.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+async function restore(){let f=$('restoreFile').files[0];if(!f)return alert('Choose a backup file first.');try{let b=JSON.parse(await f.text());if(!b.data||!Array.isArray(b.data.assignments)||!Array.isArray(b.data.notes))throw Error();if(!confirm('Restoring will replace your current records. Continue?'))return;data={...blank(),...b.data};persist();alert('Backup restored.')}catch(e){alert('That backup file could not be read.')}}
+function clearData(){if(confirm('Delete all CampusPocket records? Export a backup first.')&&confirm('Are you sure? This cannot be undone.')){data=blank();persist()}}
+$('greeting').textContent=new Dat
