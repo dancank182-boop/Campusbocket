@@ -1,543 +1,318 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head><link rel="manifest" href="./manifest.json">
-<meta name="theme-color" content="#1457d9">
+<head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#1457d9">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1557d9">
+<meta name="description" content="Your personal student companion for assignments, classes, notes and fees.">
+<link rel="manifest" href="./manifest.json">
 <title>CampusPocket</title>
 <style>
-
-* {
-  box-sizing: border-box;
-}
-
 :root {
-  --blue: #1457d9;
-  --blue-dark: #0d3fba;
-  --blue-soft: #edf3ff;
-  --bg: #f4f7fc;
-  --text: #18243b;
-  --muted: #6b7890;
-  --border: #e4eaf3;
-  --white: #ffffff;
-  --green: #16834a;
-  --red: #d93445;
+  --blue:#1557d9;
+  --blue2:#397cf4;
+  --pale:#edf3ff;
+  --bg:#f4f7fc;
+  --ink:#18243b;
+  --muted:#748198;
+  --line:#e6ebf4;
+  --green:#148451;
+  --red:#d83c4d;
+  --white:#fff;
 }
-
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: Arial, sans-serif;
-  padding-bottom: 100px;
-  -webkit-tap-highlight-color: transparent;
-}
-
-header {
-  background: linear-gradient(135deg, #1457d9, #387df4);
-  color: white;
-  padding: 28px 22px 34px;
-  border-radius: 0 0 28px 28px;
-  box-shadow: 0 8px 24px #1457d926;
-}
-
-header h1 {
-  margin: 0 0 8px;
-  font-size: 27px;
-  letter-spacing: -.6px;
-}
-
-header p {
-  margin: 0;
-  opacity: .9;
-  font-size: 14px;
-}
-
-main {
-  max-width: 650px;
-  margin: auto;
-  padding: 18px 16px;
-}
-
-.screen {
-  display: none;
-  animation: appear .22s ease-out;
-}
-
-.screen.active {
-  display: block;
-}
-
-@keyframes appear {
-  from { opacity: 0; transform: translateY(5px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.card {
-  background: var(--white);
-  padding: 19px;
-  border-radius: 20px;
-  margin-bottom: 16px;
-  border: 1px solid #edf0f6;
-  box-shadow: 0 5px 18px #17243b08;
-}
-
-h2 {
-  font-size: 18px;
-  letter-spacing: -.25px;
-  margin: 0 0 15px;
-}
-
-h3 {
-  color: var(--text);
-}
-
-input,
-textarea,
-select {
-  width: 100%;
-  padding: 13px;
-  border: 1px solid #dce4f0;
-  border-radius: 12px;
-  margin: 8px 0 12px;
-  font-size: 15px;
-  color: var(--text);
-  background: #fbfcff;
-  font-family: inherit;
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-  outline: 2px solid #1457d933;
-  border-color: var(--blue);
-}
-
-button {
-  border: 0;
-  border-radius: 12px;
-  padding: 12px 15px;
-  background: var(--blue);
-  color: white;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform .15s, opacity .15s;
-}
-
-button:active {
-  transform: scale(.97);
-  opacity: .88;
-}
-
-.primary {
-  width: 100%;
-  padding: 14px;
-  border-radius: 13px;
-}
-
-.stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 11px;
-}
-
-.stat {
-  padding: 16px;
-  background: var(--blue-soft);
-  border: 1px solid #e0eaff;
-  border-radius: 16px;
-}
-
-.stat strong {
-  font-size: 27px;
-  display: block;
-  margin-bottom: 6px;
-  color: var(--blue);
-}
-
-.stat span {
-  font-size: 12px;
-  color: #52617a;
-  line-height: 1.4;
-}
-
-.item {
-  background: #fcfdff;
-  border: 1px solid var(--border);
-  padding: 14px;
-  border-radius: 15px;
-  margin-top: 11px;
-  overflow-wrap: anywhere;
-}
-
-.item h3 {
-  margin: 0 0 8px;
-  font-size: 15px;
-}
-
-.item p {
-  margin: 6px 0;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.5;
-}
-
-.actions {
-  display: flex;
-  gap: 8px;
-  margin-top: 12px;
-  flex-wrap: wrap;
-}
-
-.green {
-  background: var(--green);
-}
-
-.red {
-  background: var(--red);
-}
-
-.muted {
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-.empty {
-  color: #8994a8;
-  text-align: center;
-  padding: 24px 8px;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.notice {
-  background: #fff6dc;
-  border: 1px solid #f4e7b9;
-  border-radius: 13px;
-  padding: 14px;
-  font-size: 13px;
-  color: #765716;
-  line-height: 1.5;
-}
-
-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #ffffffee;
-  backdrop-filter: blur(14px);
-  display: flex;
-  justify-content: space-around;
-  padding: 10px 3px calc(10px + env(safe-area-inset-bottom));
-  box-shadow: 0 -5px 22px #17243b12;
-  border-top: 1px solid #e8edf5;
-  z-index: 5;
-}
-
-nav button {
-  background: transparent;
-  color: #748098;
-  padding: 7px 2px;
-  flex: 1;
-  min-width: 0;
-  font-size: 10px;
-  border-radius: 12px;
-  font-weight: 500;
-}
-
-nav button.active {
-  color: var(--blue);
-  background: var(--blue-soft);
-  font-weight: 700;
-}
-
-nav span {
-  display: block;
-  font-size: 20px;
-  margin-bottom: 4px;
-}
-
-footer {
-  text-align: center;
-  color: #929bad;
-  font-size: 12px;
-  padding: 22px 10px;
-}
-
-@media (max-width: 360px) {
-  main {
-    padding: 14px 11px;
-  }
-
-  .card {
-    padding: 15px;
-  }
-
-  nav button {
-    font-size: 9px;
-  }
-
-  nav span {
-    font-size: 18px;
-  }
-   }
- 
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Arial,sans-serif;padding-bottom:92px}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.hero{padding:28px 21px 32px;background:linear-gradient(135deg,#1044b9,#4385ff);color:white;border-radius:0 0 28px 28px}
+.hero-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{font-weight:850;font-size:23px;letter-spacing:-.7px}
+.brand small{display:block;font-size:11px;letter-spacing:1.6px;text-transform:uppercase;opacity:.8;font-weight:650;margin-top:3px}
+.avatar{width:44px;height:44px;border-radius:15px;background:#ffffff25;display:grid;place-items:center;font-size:23px}
+.hero h1{font-size:27px;line-height:1.2;margin:27px 0 8px;letter-spacing:-.8px}
+.hero p{margin:0;font-size:14px;opacity:.88}
+.wrap{max-width:720px;margin:auto;padding:19px 15px}
+.page{display:none}
+.page.active{display:block;animation:fade .18s ease}
+@keyframes fade{from{opacity:.55;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
+.section-title{font-size:20px;font-weight:800;letter-spacing:-.5px;margin:4px 0 5px}
+.sub{color:var(--muted);font-size:13px;line-height:1.55;margin:0 0 18px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
+.stat{padding:17px;border-radius:19px;background:white;border:1px solid var(--line);box-shadow:0 4px 15px #17243b05}
+.stat .emoji{font-size:22px}
+.stat strong{display:block;font-size:27px;margin:9px 0 2px;letter-spacing:-.8px}
+.stat span{font-size:12px;color:var(--muted)}
+.card{background:white;border:1px solid var(--line);border-radius:19px;padding:17px;margin:13px 0;box-shadow:0 4px 15px #17243b05}
+.card h3{font-size:15px;margin:0 0 12px}
+.card-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.pill{font-size:11px;padding:5px 9px;border-radius:99px;background:var(--pale);color:var(--blue);font-weight:750;white-space:nowrap}
+.pill.done{background:#e4f7ec;color:var(--green)}
+.pill.late{background:#ffebed;color:var(--red)}
+.rowitem{padding:13px 0;border-bottom:1px solid var(--line)}
+.rowitem:last-child{border-bottom:0;padding-bottom:0}
+.rowitem:first-child{padding-top:0}
+.rowitem strong{font-size:14px;overflow-wrap:anywhere}
+.rowitem p{font-size:12px;color:var(--muted);line-height:1.5;margin:5px 0 0;overflow-wrap:anywhere}
+.btn{border:0;border-radius:12px;padding:11px 14px;background:var(--blue);color:white;font-weight:750;font-size:13px}
+.btn.full{width:100%;padding:13px}
+.btn.soft{background:var(--pale);color:var(--blue)}
+.btn.danger{background:#ffebed;color:var(--red)}
+.btn.green{background:var(--green);color:white}
+.btn.small{padding:8px 10px;font-size:12px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.form{display:grid;gap:11px}
+.field{display:grid;gap:6px}
+.field label{font-size:12px;font-weight:750;color:#52617a}
+.field input,.field select,.field textarea,.search{width:100%;border:1px solid #dfe6f1;border-radius:12px;padding:12px;background:#fbfcff;color:var(--ink);outline:none;min-width:0}
+.field textarea{min-height:95px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus,.search:focus{border-color:var(--blue);box-shadow:0 0 0 3px #1557d918}
+.form-actions{display:flex;gap:9px;flex-wrap:wrap}
+.form-actions button{flex:1}
+.empty{text-align:center;padding:24px 10px;color:var(--muted);font-size:13px;line-height:1.6}
+.empty b{display:block;font-size:27px;margin-bottom:6px}
+.quick{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:15px 0}
+.quick button{border:1px solid var(--line);background:white;border-radius:15px;padding:12px 3px;color:var(--ink);font-size:11px;font-weight:700}
+.quick span{display:block;font-size:21px;margin-bottom:5px}
+.progress{height:7px;background:#eaf0f8;border-radius:10px;overflow:hidden;margin:10px 0}
+.progress div{height:100%;background:var(--blue);border-radius:10px}
+.search{margin:0 0 12px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:10;display:flex;justify-content:space-around;gap:2px;background:#ffffffed;backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:8px 3px calc(8px + env(safe-area-inset-bottom));box-shadow:0 -5px 20px #17243b0a}
+.bottom-nav button{flex:1;min-width:0;border:0;background:transparent;border-radius:12px;padding:6px 1px;color:#77839a;font-size:10px;font-weight:650}
+.bottom-nav button.active{background:var(--pale);color:var(--blue)}
+.bottom-nav span{display:block;font-size:19px;margin-bottom:3px}
+.notice{font-size:12px;line-height:1.6;padding:13px;border-radius:13px;background:#fff7df;color:#765719;border:1px solid #f2e8bf}
+footer{text-align:center;font-size:11px;color:#9aa4b5;padding:20px}
+.hidden{display:none!important}
+@media(min-width:600px){.grid{grid-template-columns:repeat(4,1fr)}.hero{padding-left:max(25px,calc((100% - 680px)/2));padding-right:max(25px,calc((100% - 680px)/2))}}
 </style>
 </head>
 <body>
-<header>
-<h1>🎓 CampusPocket</h1>
-<p>Your student life, organized.</p>
+<header class="hero">
+  <div class="hero-top">
+    <div class="brand">CampusPocket<small>YOUR STUDENT COMPANION</small></div>
+    <div class="avatar">🎓</div>
+  </div>
+  <h1 id="greeting">Your campus life, organized.</h1>
+  <p id="today"></p>
 </header>
 
-<main>
-<section id="dashboard" class="screen active">
-<div class="card">
-<h2>Welcome back 👋</h2>
-<p class="muted">Your academic overview at a glance.</p>
-<div class="stats">
-<div class="stat"><strong id="total">0</strong><span>Total assignments</span></div>
-<div class="stat"><strong id="pending">0</strong><span>Pending</span></div>
-<div class="stat"><strong id="completed">0</strong><span>Completed</span></div>
-<div class="stat"><strong id="overdue">0</strong><span>Overdue</span></div>
-</div>
-</div>
-<div class="card">
-<h2>⏰ Upcoming deadlines</h2>
-<div id="upcoming"></div>
-</div>
-<div class="card">
-<h2>Quick actions</h2>
-<button class="primary" onclick="showScreen('assignments')">＋ Manage assignments</button>
-</div>
+<main class="wrap">
+<section class="page active" id="home">
+  <div class="section-title">Your dashboard</div>
+  <p class="sub">A little organization goes a long way. Let's get things done.</p>
+  <div class="grid">
+    <div class="stat"><div class="emoji">📝</div><strong id="statTasks">0</strong><span>Pending assignments</span></div>
+    <div class="stat"><div class="emoji">📚</div><strong id="statClasses">0</strong><span>Classes saved</span></div>
+    <div class="stat"><div class="emoji">💡</div><strong id="statNotes">0</strong><span>Study notes</span></div>
+    <div class="stat"><div class="emoji">💰</div><strong id="statFees">0</strong><span>Fee entries</span></div>
+  </div>
+  <div class="quick">
+    <button onclick="openPage('assignments')"><span>📝</span>Assignments</button>
+    <button onclick="openPage('classes')"><span>🗓️</span>Timetable</button>
+    <button onclick="openPage('notes')"><span>📖</span>My notes</button>
+    <button onclick="openPage('fees')"><span>💳</span>Fee tracker</button>
+  </div>
+  <div class="card">
+    <div class="card-head"><h3>Assignment progress</h3><span class="pill" id="progressLabel">0%</span></div>
+    <div class="progress"><div id="progressBar" style="width:0%"></div></div>
+    <p class="sub" id="progressText" style="margin:0">Add an assignment to get started.</p>
+  </div>
+  <div class="card">
+    <div class="card-head"><h3>Upcoming deadlines</h3><button class="btn soft small" onclick="openPage('assignments')">View all</button></div>
+    <div id="upcoming"></div>
+  </div>
+  <div class="card">
+    <div class="card-head"><h3>Your next classes</h3><button class="btn soft small" onclick="openPage('classes')">Timetable</button></div>
+    <div id="nextClasses"></div>
+  </div>
 </section>
 
-<section id="assignments" class="screen">
-<div class="card">
-<h2>📝 Add assignment</h2>
-<form id="assignmentForm">
-<input id="assignmentName" maxlength="120" placeholder="Assignment name" required>
-<input id="courseName" maxlength="100" placeholder="Course / unit" required>
-<label for="deadline" class="muted">Deadline</label>
-<input id="deadline" type="date" required>
-<button class="primary" type="submit">Save assignment</button>
-</form>
-</div>
-<div class="card">
-<h2>📚 My assignments</h2>
-<div id="assignmentList"></div>
-</div>
+<section class="page" id="assignments">
+  <div class="section-title">Assignments</div>
+  <p class="sub">Track coursework and keep an eye on deadlines.</p>
+  <div class="card">
+    <h3 id="assignmentFormTitle">➕ Add an assignment</h3>
+    <form id="assignmentForm" class="form">
+      <input id="assignmentId" type="hidden">
+      <div class="field"><label for="assignmentTitle">Assignment title *</label><input id="assignmentTitle" required maxlength="120" placeholder="e.g. Pharmacology CAT revision"></div>
+      <div class="field"><label for="assignmentCourse">Course / unit</label><input id="assignmentCourse" maxlength="100" placeholder="e.g. Pharmacology II"></div>
+      <div class="field"><label for="assignmentDue">Due date</label><input id="assignmentDue" type="date"></div>
+      <div class="field"><label for="assignmentPriority">Priority</label><select id="assignmentPriority"><option>Normal</option><option>High</option><option>Low</option></select></div>
+      <div class="form-actions"><button class="btn" type="submit">Save assignment</button><button class="btn soft hidden" type="button" id="cancelAssignment" onclick="resetAssignment()">Cancel edit</button></div>
+    </form>
+  </div>
+  <input class="search" id="assignmentSearch" placeholder="🔎 Search assignments..." oninput="renderAssignments()">
+  <div class="card"><div class="card-head"><h3>Your coursework</h3><span class="pill" id="assignmentCount">0 items</span></div><div id="assignmentList"></div></div>
 </section>
 
-<section id="timetable" class="screen">
-<div class="card">
-<h2>📅 Class timetable</h2>
-<p class="muted">Add classes and keep your weekly schedule in one place.</p>
-<form id="classForm">
-<input id="className" maxlength="100" placeholder="Class / unit name" required>
-<select id="classDay" required>
-<option value="">Choose day</option>
-<option>Monday</option><option>Tuesday</option>
-<option>Wednesday</option><option>Thursday</option>
-<option>Friday</option><option>Saturday</option><option>Sunday</option>
-</select>
-<input id="classTime" type="time" required>
-<input id="classVenue" maxlength="100" placeholder="Venue (optional)">
-<button class="primary" type="submit">Add class</button>
-</form>
-</div>
-<div class="card"><h2>My classes</h2><div id="classList"></div></div>
+<section class="page" id="classes">
+  <div class="section-title">Class timetable</div>
+  <p class="sub">Save your lectures, practicals, and revision sessions.</p>
+  <div class="card">
+    <h3 id="classFormTitle">➕ Add a class</h3>
+    <form id="classForm" class="form">
+      <input id="classId" type="hidden">
+      <div class="field"><label for="classTitle">Class / unit *</label><input id="classTitle" required maxlength="120" placeholder="e.g. Medical-Surgical Nursing"></div>
+      <div class="field"><label for="classDay">Day</label><select id="classDay"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option></select></div>
+      <div class="field"><label for="classStart">Start time</label><input id="classStart" type="time"></div>
+      <div class="field"><label for="classEnd">End time</label><input id="classEnd" type="time"></div>
+      <div class="field"><label for="classVenue">Venue / room</label><input id="classVenue" maxlength="100" placeholder="e.g. Skills lab"></div>
+      <div class="form-actions"><button class="btn" type="submit">Save class</button><button class="btn soft hidden" type="button" id="cancelClass" onclick="resetClass()">Cancel edit</button></div>
+    </form>
+  </div>
+  <div class="card"><h3>Your weekly classes</h3><div id="classList"></div></div>
 </section>
 
-<section id="notes" class="screen">
-<div class="card">
-<h2>📚 Study notes</h2>
-<form id="noteForm">
-<input id="noteTitle" maxlength="120" placeholder="Note title" required>
-<textarea id="noteBody" maxlength="5000" rows="5" placeholder="Write your study notes here..." required></textarea>
-<button class="primary" type="submit">Save note</button>
-</form>
-</div>
-<div class="card"><h2>Saved notes</h2><div id="noteList"></div></div>
+<section class="page" id="notes">
+  <div class="section-title">Study notes</div>
+  <p class="sub">Keep your key points in one place for quick revision.</p>
+  <div class="card">
+    <h3 id="noteFormTitle">✍️ Write a note</h3>
+    <form id="noteForm" class="form">
+      <input id="noteId" type="hidden">
+      <div class="field"><label for="noteTitle">Note title *</label><input id="noteTitle" required maxlength="120" placeholder="e.g. Types of drug interactions"></div>
+      <div class="field"><label for="noteCourse">Course / topic</label><input id="noteCourse" maxlength="100" placeholder="e.g. Pharmacology"></div>
+      <div class="field"><label for="noteContent">Your notes *</label><textarea id="noteContent" required maxlength="30000" placeholder="Write your revision points here..."></textarea></div>
+      <div class="form-actions"><button class="btn" type="submit">Save note</button><button class="btn soft hidden" type="button" id="cancelNote" onclick="resetNote()">Cancel edit</button></div>
+    </form>
+  </div>
+  <input class="search" id="noteSearch" placeholder="🔎 Search notes..." oninput="renderNotes()">
+  <div id="noteList"></div>
 </section>
 
-<section id="fees" class="screen">
-<div class="card">
-<h2>💰 Fee tracker</h2>
-<p class="muted">Record your fee target and payments. This is a personal tracker, not an official university account.</p>
-<label class="muted" for="feeTarget">Total fees (KSh)</label>
-<input id="feeTarget" type="number" min="0" step="0.01" placeholder="e.g. 256000">
-<button class="primary" onclick="saveFeeTarget()">Save total fees</button>
-</div>
-<div class="card">
-<div class="stats">
-<div class="stat"><strong id="feeTotal">0</strong><span>Total fees (KSh)</span></div>
-<div class="stat"><strong id="feePaid">0</strong><span>Paid (KSh)</span></div>
-<div class="stat"><strong id="feeBalance">0</strong><span>Balance (KSh)</span></div>
-</div>
-</div>
-<div class="card">
-<h2>Record a payment</h2>
-<form id="paymentForm">
-<input id="paymentAmount" type="number" min="0.01" step="0.01" placeholder="Amount paid (KSh)" required>
-<input id="paymentDate" type="date" required>
-<input id="paymentDescription" maxlength="100" placeholder="Description (optional)">
-<button class="primary" type="submit">Record payment</button>
-</form>
-<div id="paymentList"></div>
-</div>
+<section class="page" id="fees">
+  <div class="section-title">Fee tracker</div>
+  <p class="sub">Record your charges and payments for personal tracking.</p>
+  <div class="grid">
+    <div class="stat"><div class="emoji">🧾</div><strong id="feeTotal">KES 0</strong><span>Total charges</span></div>
+    <div class="stat"><div class="emoji">✅</div><strong id="feePaid">KES 0</strong><span>Marked paid</span></div>
+  </div>
+  <div class="card">
+    <h3 id="feeFormTitle">➕ Add a fee entry</h3>
+    <form id="feeForm" class="form">
+      <input id="feeId" type="hidden">
+      <div class="field"><label for="feeTitle">Description *</label><input id="feeTitle" required maxlength="120" placeholder="e.g. Tuition trimester 1"></div>
+      <div class="field"><label for="feeAmount">Amount (KES) *</label><input id="feeAmount" type="number" min="0" step="0.01" required placeholder="e.g. 66500"></div>
+      <div class="field"><label for="feeStatus">Payment status</label><select id="feeStatus"><option value="Unpaid">Unpaid</option><option value="Paid">Paid</option><option value="Partial">Partial</option></select></div>
+      <div class="field"><label for="feeDate">Date</label><input id="feeDate" type="date"></div>
+      <div class="form-actions"><button class="btn" type="submit">Save fee</button><button class="btn soft hidden" type="button" id="cancelFee" onclick="resetFee()">Cancel edit</button></div>
+    </form>
+  </div>
+  <div class="card"><h3>Fee records</h3><div id="feeList"></div></div>
 </section>
 
-<section id="settings" class="screen">
-<div class="card">
-<h2>⚙️ Settings</h2>
-<p class="muted">CampusPocket keeps this version's information in this browser on this device. It does not yet sync between devices.</p>
-<p class="muted">App version: 0.2</p>
-<div class="notice">Back up important information separately. Clearing browser data may erase your saved information.</div>
-</div>
-<div class="card">
-<h2>Reset app data</h2>
-<p class="muted">This permanently removes CampusPocket assignments, classes, notes and fee records saved in this browser.</p>
-<button class="red" onclick="resetData()">Delete all app data</button>
-</div>
+<section class="page" id="settings">
+  <div class="section-title">More & settings</div>
+  <p class="sub">Manage your app and protect your student records.</p>
+  <div class="card">
+    <h3>💾 Backup your data</h3>
+    <p class="sub">Export your records to a JSON file and keep it somewhere safe.</p>
+    <button class="btn full" onclick="exportData()">Export backup</button>
+    <div class="field" style="margin-top:16px"><label for="importFile">Restore a CampusPocket backup</label><input id="importFile" type="file" accept=".json,application/json"></div>
+    <button class="btn soft full" onclick="importData()">Restore backup</button>
+  </div>
+  <div class="card">
+    <h3>📱 Offline use</h3>
+    <p class="sub">After opening the app online once, your service worker can cache the app for offline use. Records are stored on this device and browser.</p>
+    <button class="btn soft full" onclick="checkOffline()">Check offline setup</button>
+    <p id="offlineStatus" class="sub" style="margin:12px 0 0"></p>
+  </div>
+  <div class="card">
+    <h3>⚠️ About your data</h3>
+    <p class="sub">CampusPocket is a personal organizer, not an official university payment system. It does not verify payments or send reminders when the app is closed. Export backups regularly, and don't store passwords or sensitive personal information here.</p>
+    <button class="btn danger full" onclick="clearAllData()">Delete all CampusPocket records</button>
+  </div>
+  <div class="card"><h3>CampusPocket</h3><p class="sub" style="margin:0">Student Companion · Version 2.0</p></div>
 </section>
-<footer>CampusPocket · Built for students</footer>
+<footer>Made for your student journey 💙</footer>
 </main>
 
-<nav aria-label="Main navigation">
-<button class="active" data-screen="dashboard" onclick="showScreen('dashboard')"><span>🏠</span>Home</button>
-<button data-screen="assignments" onclick="showScreen('assignments')"><span>📝</span>Tasks</button>
-<button data-screen="timetable" onclick="showScreen('timetable')"><span>📅</span>Classes</button>
-<button data-screen="notes" onclick="showScreen('notes')"><span>📚</span>Notes</button>
-<button data-screen="fees" onclick="showScreen('fees')"><span>💰</span>Fees</button>
-<button data-screen="settings" onclick="showScreen('settings')"><span>⚙️</span>More</button>
+<nav class="bottom-nav">
+  <button class="active" data-page="home" onclick="openPage('home')"><span>🏠</span>Home</button>
+  <button data-page="assignments" onclick="openPage('assignments')"><span>📝</span>Tasks</button>
+  <button data-page="classes" onclick="openPage('classes')"><span>🗓️</span>Classes</button>
+  <button data-page="notes" onclick="openPage('notes')"><span>📖</span>Notes</button>
+  <button data-page="fees" onclick="openPage('fees')"><span>💳</span>Fees</button>
+  <button data-page="settings" onclick="openPage('settings')"><span>⚙️</span>More</button>
 </nav>
 
 <script>
-const readData=(key,fallback)=>{
- try {
-  const value=JSON.parse(localStorage.getItem(key));
-  return value===null?fallback:value;
- } catch { return fallback; }
-};
-let assignments=readData('assignments',[]);
-let classes=readData('cp_classes',[]);
-let notes=readData('cp_notes',[]);
-let payments=readData('cp_payments',[]);
-let feeTarget=Number(readData('cp_fee_target',0))||0;
+"use strict";
+const STORE_KEY = "campuspocket_v2_records";
+const blankData = () => ({assignments:[],classes:[],notes:[],fees:[]});
+let data = loadData();
 
-function store(key,value){
- localStorage.setItem(key,JSON.stringify(value));
+function loadData(){
+  try {
+    const value = JSON.parse(localStorage.getItem(STORE_KEY));
+    if(value && ["assignments","classes","notes","fees"].every(k=>Array.isArray(value[k]))) return value;
+  } catch(e){}
+  return blankData();
 }
+function saveData(){
+  try {
+    localStorage.setItem(STORE_KEY,JSON.stringify(data));
+    renderAll();
+  } catch(e) {
+    alert("Could not save data. Export a backup and check available device storage.");
+  }
+}
+function el(id){return document.getElementById(id)}
 function safe(value){
- return String(value).replace(/[&<>"']/g,c=>({
- '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
- }[c]));
+  return String(value ?? "").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 }
-function showScreen(id){
- document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===id));
- document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.screen===id));
- window.scrollTo(0,0);
+function dateLabel(value){
+  if(!value)return "No date set";
+  const d=new Date(value+"T00:00:00");
+  return Number.isNaN(d.getTime())?value:d.toLocaleDateString(undefined,{day:"numeric",month:"short",year:"numeric"});
 }
-function isOverdue(a){
- return !a.completed && a.deadline < new Date().toLocaleDateString('en-CA');
+function todayKey(){
+  const d=new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+}
+function money(value){
+  return "KES "+Number(value||0).toLocaleString("en-KE",{maximumFractionDigits:2});
+}
+function empty(message){return `<div class="empty"><b>✨</b>${safe(message)}</div>`}
+function openPage(id){
+  document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===id));
+  document.querySelectorAll(".bottom-nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===id));
+  window.scrollTo({top:0,behavior:"smooth"});
+  if(id==="home")renderHome();
+}
+function renderAll(){renderHome();renderAssignments();renderClasses();renderNotes();renderFees()}
+function renderHome(){
+  const pending=data.assignments.filter(a=>!a.done);
+  el("statTasks").textContent=pending.length;
+  el("statClasses").textContent=data.classes.length;
+  el("statNotes").textContent=data.notes.length;
+  el("statFees").textContent=data.fees.length;
+  const complete=data.assignments.filter(a=>a.done).length;
+  const pct=data.assignments.length?Math.round(complete/data.assignments.length*100):0;
+  el("progressLabel").textContent=pct+"%";
+  el("progressBar").style.width=pct+"%";
+  el("progressText").textContent=data.assignments.length?`${complete} of ${data.assignments.length} assignments completed.`:"Add an assignment to get started.";
+  const upcoming=pending.filter(a=>a.due).sort((a,b)=>a.due.localeCompare(b.due)).slice(0,4);
+  el("upcoming").innerHTML=upcoming.length?upcoming.map(a=>`
+    <div class="rowitem"><div class="card-head"><strong>${safe(a.title)}</strong><span class="pill ${a.due<todayKey()?"late":""}">${safe(dateLabel(a.due))}</span></div>
+    <p>${safe(a.course||"No course")} · ${safe(a.priority||"Normal")} priority</p></div>`).join(""):empty("No upcoming deadlines. Add assignments to see them here.");
+  const days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  const today=days[new Date().getDay()];
+  const todays=data.classes.filter(c=>c.day===today).sort((a,b)=>(a.start||"").localeCompare(b.start||""));
+  el("nextClasses").innerHTML=todays.length?todays.map(c=>`
+    <div class="rowitem"><strong>${safe(c.title)}</strong><p>${safe(c.start||"Time not set")}${c.end?"–"+safe(c.end):""} · ${safe(c.venue||"Venue not set")}</p></div>`).join(""):empty(`No classes saved for ${today}. Add your timetable in Classes.`);
 }
 function renderAssignments(){
- const list=document.getElementById('assignmentList');
- if(!assignments.length){list.innerHTML='<div class="empty">No assignments yet. Add your first one above.</div>';return;}
- list.innerHTML=assignments.map(a=>`
- <div class="item">
- <h3>${safe(a.name)}</h3><p>📚 ${safe(a.course)}</p>
- <p>📅 ${safe(a.deadline)} ${isOverdue(a)?'· 🔴 OVERDUE':''}</p>
- <div class="actions">
- <button class="green" onclick="toggleAssignment(${Number(a.id)})">${a.completed?'Undo':'✓ Complete'}</button>
- <button class="red" onclick="deleteAssignment(${Number(a.id)})">Delete</button>
- </div></div>`).join('');
+  const q=(el("assignmentSearch")?.value||"").toLowerCase();
+  const list=data.assignments.filter(a=>(a.title+" "+a.course).toLowerCase().includes(q)).sort((a,b)=>(a.done-b.done)||(a.due||"9999").localeCompare(b.due||"9999"));
+  el("assignmentCount").textContent=list.length+" items";
+  el("assignmentList").innerHTML=list.length?list.map(a=>`
+    <div class="rowitem">
+      <div class="card-head"><strong>${safe(a.title)}</strong><span class="pill ${a.done?"done":a.due&&a.due<todayKey()?"late":""}">${a.done?"Completed":a.due&&a.due<todayKey()?"Overdue":safe(a.priority||"Normal")}</span></div>
+      <p>${safe(a.course||"No course")} · Due: ${safe(dateLabel(a.due))}</p>
+      <div class="actions"><button class="btn small ${a.done?"soft":"green"}" onclick="toggleAssignment('${a.id}')">${a.done?"Mark pending":"Mark complete"}</button><button class="btn soft small" onclick="editAssignment('${a.id}')">Edit</button><button class="btn danger small" onclick="deleteRecord('assignments','${a.id}')">Delete</button></div>
+    </div>`).join(""):empty("No assignments found. Add your first task above.");
 }
-function renderDashboard(){
- const done=assignments.filter(a=>a.completed).length;
- document.getElementById('total').textContent=assignments.length;
- document.getElementById('completed').textContent=done;
- document.getElementById('pending').textContent=assignments.length-done;
- document.getElementById('overdue').textContent=assignments.filter(isOverdue).length;
- const upcoming=document.getElementById('upcoming');
- const next=assignments.filter(a=>!a.completed).sort((a,b)=>a.deadline.localeCompare(b.deadline)).slice(0,3);
- upcoming.innerHTML=next.length?next.map(a=>`<div class="item"><h3>${safe(a.name)}</h3><p>${safe(a.course)} · ${safe(a.deadline)}</p></div>`).join(''):'<div class="empty">No upcoming assignments.</div>';
-}
-function refreshAssignments(){store('assignments',assignments);renderAssignments();renderDashboard();}
-document.getElementById('assignmentForm').addEventListener('submit',e=>{
- e.preventDefault();
- assignments.push({id:Date.now(),name:document.getElementById('assignmentName').value.trim(),course:document.getElementById('courseName').value.trim(),deadline:document.getElementById('deadline').value,completed:false});
- refreshAssignments();e.target.reset();
-});
-function toggleAssignment(id){assignments=assignments.map(a=>a.id===id?{...a,completed:!a.completed}:a);refreshAssignments();}
-function deleteAssignment(id){if(confirm('Delete this assignment?')){assignments=assignments.filter(a=>a.id!==id);refreshAssignments();}}
-
-function renderClasses(){
- const el=document.getElementById('classList');
- const sorted=[...classes].sort((a,b)=>['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'].indexOf(a.day)-['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'].indexOf(b.day)||a.time.localeCompare(b.time));
- el.innerHTML=sorted.length?sorted.map(c=>`<div class="item"><h3>${safe(c.name)}</h3><p>${safe(c.day)} · ${safe(c.time)}</p><p>${safe(c.venue||'Venue not set')}</p><button class="red" onclick="deleteClass(${c.id})">Delete</button></div>`).join(''):'<div class="empty">No classes added yet.</div>';
-}
-document.getElementById('classForm').addEventListener('submit',e=>{
- e.preventDefault();classes.push({id:Date.now(),name:document.getElementById('className').value.trim(),day:document.getElementById('classDay').value,time:document.getElementById('classTime').value,venue:document.getElementById('classVenue').value.trim()});
- store('cp_classes',classes);renderClasses();e.target.reset();
-});
-function deleteClass(id){classes=classes.filter(c=>c.id!==id);store('cp_classes',classes);renderClasses();}
-
-function renderNotes(){
- const el=document.getElementById('noteList');
- el.innerHTML=notes.length?[...notes].reverse().map(n=>`<div class="item"><h3>${safe(n.title)}</h3><p style="white-space:pre-wrap">${safe(n.body)}</p><button class="red" onclick="deleteNote(${n.id})">Delete note</button></div>`).join(''):'<div class="empty">No notes saved yet.</div>';
-}
-document.getElementById('noteForm').addEventListener('submit',e=>{
- e.preventDefault();notes.push({id:Date.now(),title:document.getElementById('noteTitle').value.trim(),body:document.getElementById('noteBody').value.trim()});
- store('cp_notes',notes);renderNotes();e.target.reset();
-});
-function deleteNote(id){notes=notes.filter(n=>n.id!==id);store('cp_notes',notes);renderNotes();}
-
-function money(n){return (Number(n)||0).toLocaleString('en-KE',{maximumFractionDigits:2});}
-function renderFees(){
- const paid=payments.reduce((sum,p)=>sum+Number(p.amount),0);
- document.getElementById('feeTotal').textContent=money(feeTarget);
- document.getElementById('feePaid').textContent=money(paid);
- document.getElementById('feeBalance').textContent=money(feeTarget-paid);
- document.getElementById('feeTarget').value=feeTarget||'';
- const el=document.getElementById('paymentList');
- el.innerHTML=payments.length? [...payments].reverse().map(p=>`<div class="item"><h3>KSh ${money(p.amount)}</h3><p>${safe(p.date)} · ${safe(p.description||'Fee payment')}</p><button class="red" onclick="deletePayment(${p.id})">Delete</button></div>`).join(''):'<div class="empty">No payments recorded yet.</div>';
-}
-function saveFeeTarget(){
- const value=document.getElementById('feeTarget').value;
- if(value===''||!Number.isFinite(Number(value))||Number(value)<0){alert('Enter a valid fee amount.');return;}
- feeTarget=Number(value);store('cp_fee_target',feeTarget);renderFees();
-}
-document.getElementById('paymentForm').addEventListener('submit',e=>{
- e.preventDefault();const amount=Number(document.getElementById('paymentAmount').value);
- if(!Number.isFinite(amount)||amount<=0){alert('Enter a valid payment amount.');return;}
- payments.push({id:Date.now(),amount,date:document.getElementById('paymentDate').value,description:document.getElementById('paymentDescription').value.trim()});
- store('cp_payments',payments);renderFees();e.target.reset();
-});
-function deletePayment(id){payments=payments.filter(p=>p.id!==id);store('cp_payments',payments);renderFees();}
-
-function resetData(){
- if(!confirm('Delete ALL CampusPocket data saved in this browser? This cannot be undone.'))return;
- ['assignments','cp_classes','cp_notes','cp_payments','cp_fee_target'].forEach(k=>localStorage.removeItem(k));
- assignments=[];classes=[];notes=[];payments=[];feeTarget=0;
- renderAssignments();renderDashboard();renderClasses();renderNotes();renderFees();
- showScreen('dashboard');
-}
-
-renderAssignments();renderDashboard();renderClasses();renderNotes();renderFees();
-</script>
-<script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./service-worker.js")
-      .catch(error => console.error("Service worker registration failed:", error));
-  });
-}
-</script></body>
-</html>
+function resetAssignment(){
+  el("assignmentF
