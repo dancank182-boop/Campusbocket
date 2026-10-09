@@ -8,37 +8,285 @@
 <meta name="theme-color" content="#1457d9">
 <title>CampusPocket</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#f4f6fb;color:#18243b;font-family:Arial,sans-serif;padding-bottom:85px}
-header{background:#1457d9;color:white;padding:23px 20px;border-radius:0 0 23px 23px}
-header h1{margin:0 0 6px;font-size:25px}
-header p{margin:0;opacity:.85}
-main{max-width:650px;margin:auto;padding:18px}
-.screen{display:none}
-.screen.active{display:block}
-.card{background:white;padding:17px;border-radius:17px;margin-bottom:15px;box-shadow:0 3px 12px #17243b0c}
-h2{font-size:19px;margin:0 0 15px}
-input,textarea,select{width:100%;padding:12px;border:1px solid #dce2ec;border-radius:10px;margin-bottom:10px;font-size:15px;background:white}
-button{border:0;border-radius:10px;padding:11px 13px;background:#1457d9;color:white;font-size:14px;cursor:pointer}
-.primary{width:100%;padding:13px}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.stat{padding:16px;background:#edf3ff;border-radius:13px}
-.stat strong{font-size:26px;display:block;margin-bottom:5px}
-.stat span{font-size:13px;color:#52617a}
-.item{border:1px solid #e3e8f0;padding:13px;border-radius:12px;margin-top:10px;overflow-wrap:anywhere}
-.item h3{margin:0 0 7px;font-size:16px}
-.item p{margin:5px 0;color:#5c6980;font-size:14px}
-.actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
-.green{background:#16834a}
-.red{background:#d93445}
-.muted{color:#68758b;font-size:14px;line-height:1.5}
-.empty{color:#778198;text-align:center;padding:20px 5px}
-nav{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;padding:9px 2px calc(9px + env(safe-area-inset-bottom));box-shadow:0 -3px 16px #17243b12;z-index:5}
-nav button{background:transparent;color:#637089;padding:6px 3px;flex:1;font-size:11px;border-radius:8px}
-nav button.active{color:#1457d9;background:#edf3ff;font-weight:bold}
-nav span{display:block;font-size:20px;margin-bottom:4px}
-.notice{background:#fff7df;border-radius:10px;padding:12px;font-size:13px;color:#765716}
-footer{text-align:center;color:#8790a0;font-size:12px;padding:20px}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --blue: #1457d9;
+  --blue-dark: #0d3fba;
+  --blue-soft: #edf3ff;
+  --bg: #f4f7fc;
+  --text: #18243b;
+  --muted: #6b7890;
+  --border: #e4eaf3;
+  --white: #ffffff;
+  --green: #16834a;
+  --red: #d93445;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+  padding-bottom: 100px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+header {
+  background: linear-gradient(135deg, #1457d9, #387df4);
+  color: white;
+  padding: 28px 22px 34px;
+  border-radius: 0 0 28px 28px;
+  box-shadow: 0 8px 24px #1457d926;
+}
+
+header h1 {
+  margin: 0 0 8px;
+  font-size: 27px;
+  letter-spacing: -.6px;
+}
+
+header p {
+  margin: 0;
+  opacity: .9;
+  font-size: 14px;
+}
+
+main {
+  max-width: 650px;
+  margin: auto;
+  padding: 18px 16px;
+}
+
+.screen {
+  display: none;
+  animation: appear .22s ease-out;
+}
+
+.screen.active {
+  display: block;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+  background: var(--white);
+  padding: 19px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  border: 1px solid #edf0f6;
+  box-shadow: 0 5px 18px #17243b08;
+}
+
+h2 {
+  font-size: 18px;
+  letter-spacing: -.25px;
+  margin: 0 0 15px;
+}
+
+h3 {
+  color: var(--text);
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #dce4f0;
+  border-radius: 12px;
+  margin: 8px 0 12px;
+  font-size: 15px;
+  color: var(--text);
+  background: #fbfcff;
+  font-family: inherit;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid #1457d933;
+  border-color: var(--blue);
+}
+
+button {
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 15px;
+  background: var(--blue);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .15s, opacity .15s;
+}
+
+button:active {
+  transform: scale(.97);
+  opacity: .88;
+}
+
+.primary {
+  width: 100%;
+  padding: 14px;
+  border-radius: 13px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 11px;
+}
+
+.stat {
+  padding: 16px;
+  background: var(--blue-soft);
+  border: 1px solid #e0eaff;
+  border-radius: 16px;
+}
+
+.stat strong {
+  font-size: 27px;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--blue);
+}
+
+.stat span {
+  font-size: 12px;
+  color: #52617a;
+  line-height: 1.4;
+}
+
+.item {
+  background: #fcfdff;
+  border: 1px solid var(--border);
+  padding: 14px;
+  border-radius: 15px;
+  margin-top: 11px;
+  overflow-wrap: anywhere;
+}
+
+.item h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+
+.item p {
+  margin: 6px 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.green {
+  background: var(--green);
+}
+
+.red {
+  background: var(--red);
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.empty {
+  color: #8994a8;
+  text-align: center;
+  padding: 24px 8px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.notice {
+  background: #fff6dc;
+  border: 1px solid #f4e7b9;
+  border-radius: 13px;
+  padding: 14px;
+  font-size: 13px;
+  color: #765716;
+  line-height: 1.5;
+}
+
+nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #ffffffee;
+  backdrop-filter: blur(14px);
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 3px calc(10px + env(safe-area-inset-bottom));
+  box-shadow: 0 -5px 22px #17243b12;
+  border-top: 1px solid #e8edf5;
+  z-index: 5;
+}
+
+nav button {
+  background: transparent;
+  color: #748098;
+  padding: 7px 2px;
+  flex: 1;
+  min-width: 0;
+  font-size: 10px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+nav button.active {
+  color: var(--blue);
+  background: var(--blue-soft);
+  font-weight: 700;
+}
+
+nav span {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+footer {
+  text-align: center;
+  color: #929bad;
+  font-size: 12px;
+  padding: 22px 10px;
+}
+
+@media (max-width: 360px) {
+  main {
+    padding: 14px 11px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+
+  nav button {
+    font-size: 9px;
+  }
+
+  nav span {
+    font-size: 18px;
+  }
+   }
+ 
 </style>
 </head>
 <body>
