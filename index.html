@@ -1,570 +1,287 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#1457d9">
 <title>CampusPocket</title>
-
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    background: #f4f6f8;
-    color: #17202a;
-}
-
-header {
-    background: #1769aa;
-    color: white;
-    padding: 25px 20px;
-    border-radius: 0 0 25px 25px;
-}
-
-header h1 {
-    font-size: 28px;
-    margin-bottom: 6px;
-}
-
-.container {
-    max-width: 700px;
-    margin: auto;
-    padding: 20px;
-}
-
-.card {
-    background: white;
-    padding: 20px;
-    border-radius: 18px;
-    margin-bottom: 18px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-}
-
-.card h2 {
-    margin-bottom: 15px;
-}
-
-.stats {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-}
-
-.stat {
-    padding: 18px;
-    border-radius: 15px;
-    background: #eef6ff;
-}
-
-.stat h3 {
-    font-size: 28px;
-    margin-bottom: 5px;
-}
-
-.stat p {
-    color: #667085;
-    font-size: 14px;
-}
-
-input {
-    width: 100%;
-    padding: 13px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    font-size: 15px;
-}
-
-button {
-    border: none;
-    padding: 12px 15px;
-    border-radius: 10px;
-    background: #1769aa;
-    color: white;
-    font-size: 15px;
-    cursor: pointer;
-}
-
-.add-btn {
-    width: 100%;
-}
-
-.assignment {
-    border: 1px solid #e1e5e9;
-    border-radius: 12px;
-    padding: 15px;
-    margin-top: 12px;
-}
-
-.assignment h3 {
-    margin-bottom: 6px;
-}
-
-.assignment p {
-    color: #667085;
-    margin-bottom: 8px;
-}
-
-.completed {
-    opacity: 0.6;
-    text-decoration: line-through;
-}
-
-.overdue {
-    border-left: 5px solid #dc3545;
-}
-
-.actions {
-    display: flex;
-    gap: 8px;
-    margin-top: 10px;
-}
-
-.complete-btn {
-    background: #198754;
-}
-
-.delete-btn {
-    background: #dc3545;
-}
-
-.empty {
-    color: #777;
-    text-align: center;
-    padding: 15px;
-}
-
-footer {
-    text-align: center;
-    color: #777;
-    padding: 25px;
-    font-size: 13px;
-}
+*{box-sizing:border-box}
+body{margin:0;background:#f4f6fb;color:#18243b;font-family:Arial,sans-serif;padding-bottom:85px}
+header{background:#1457d9;color:white;padding:23px 20px;border-radius:0 0 23px 23px}
+header h1{margin:0 0 6px;font-size:25px}
+header p{margin:0;opacity:.85}
+main{max-width:650px;margin:auto;padding:18px}
+.screen{display:none}
+.screen.active{display:block}
+.card{background:white;padding:17px;border-radius:17px;margin-bottom:15px;box-shadow:0 3px 12px #17243b0c}
+h2{font-size:19px;margin:0 0 15px}
+input,textarea,select{width:100%;padding:12px;border:1px solid #dce2ec;border-radius:10px;margin-bottom:10px;font-size:15px;background:white}
+button{border:0;border-radius:10px;padding:11px 13px;background:#1457d9;color:white;font-size:14px;cursor:pointer}
+.primary{width:100%;padding:13px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{padding:16px;background:#edf3ff;border-radius:13px}
+.stat strong{font-size:26px;display:block;margin-bottom:5px}
+.stat span{font-size:13px;color:#52617a}
+.item{border:1px solid #e3e8f0;padding:13px;border-radius:12px;margin-top:10px;overflow-wrap:anywhere}
+.item h3{margin:0 0 7px;font-size:16px}
+.item p{margin:5px 0;color:#5c6980;font-size:14px}
+.actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.green{background:#16834a}
+.red{background:#d93445}
+.muted{color:#68758b;font-size:14px;line-height:1.5}
+.empty{color:#778198;text-align:center;padding:20px 5px}
+nav{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;padding:9px 2px calc(9px + env(safe-area-inset-bottom));box-shadow:0 -3px 16px #17243b12;z-index:5}
+nav button{background:transparent;color:#637089;padding:6px 3px;flex:1;font-size:11px;border-radius:8px}
+nav button.active{color:#1457d9;background:#edf3ff;font-weight:bold}
+nav span{display:block;font-size:20px;margin-bottom:4px}
+.notice{background:#fff7df;border-radius:10px;padding:12px;font-size:13px;color:#765716}
+footer{text-align:center;color:#8790a0;font-size:12px;padding:20px}
 </style>
 </head>
-
 <body>
-
 <header>
-    <h1>🎓 CampusPocket</h1>
-    <p>Your student companion</p>
+<h1>🎓 CampusPocket</h1>
+<p>Your student life, organized.</p>
 </header>
 
-<div class="container">
-
-    <!-- DASHBOARD -->
-
-    <div class="card">
-
-        <h2>📊 Dashboard</h2>
-
-        <div class="stats">
-
-            <div class="stat">
-                <h3 id="total">0</h3>
-                <p>Total Assignments</p>
-            </div>
-
-            <div class="stat">
-                <h3 id="pending">0</h3>
-                <p>Pending</p>
-            </div>
-
-            <div class="stat">
-                <h3 id="completed">0</h3>
-                <p>Completed</p>
-            </div>
-
-            <div class="stat">
-                <h3 id="overdue">0</h3>
-                <p>Overdue</p>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- ADD ASSIGNMENT -->
-
-    <div class="card">
-
-        <h2>📝 Add Assignment</h2>
-
-        <input
-            type="text"
-            id="assignmentName"
-            placeholder="Assignment name"
-        >
-
-        <input
-            type="text"
-            id="courseName"
-            placeholder="Course / Unit"
-        >
-
-        <input
-            type="date"
-            id="deadline"
-        >
-
-        <button
-            class="add-btn"
-            onclick="addAssignment()">
-
-            + Add Assignment
-
-        </button>
-
-    </div>
-
-
-    <!-- ASSIGNMENTS -->
-
-    <div class="card">
-
-        <h2>📚 My Assignments</h2>
-
-        <div id="assignmentList"></div>
-
-    </div>
-
+<main>
+<section id="dashboard" class="screen active">
+<div class="card">
+<h2>Welcome back 👋</h2>
+<p class="muted">Your academic overview at a glance.</p>
+<div class="stats">
+<div class="stat"><strong id="total">0</strong><span>Total assignments</span></div>
+<div class="stat"><strong id="pending">0</strong><span>Pending</span></div>
+<div class="stat"><strong id="completed">0</strong><span>Completed</span></div>
+<div class="stat"><strong id="overdue">0</strong><span>Overdue</span></div>
 </div>
+</div>
+<div class="card">
+<h2>⏰ Upcoming deadlines</h2>
+<div id="upcoming"></div>
+</div>
+<div class="card">
+<h2>Quick actions</h2>
+<button class="primary" onclick="showScreen('assignments')">＋ Manage assignments</button>
+</div>
+</section>
 
+<section id="assignments" class="screen">
+<div class="card">
+<h2>📝 Add assignment</h2>
+<form id="assignmentForm">
+<input id="assignmentName" maxlength="120" placeholder="Assignment name" required>
+<input id="courseName" maxlength="100" placeholder="Course / unit" required>
+<label for="deadline" class="muted">Deadline</label>
+<input id="deadline" type="date" required>
+<button class="primary" type="submit">Save assignment</button>
+</form>
+</div>
+<div class="card">
+<h2>📚 My assignments</h2>
+<div id="assignmentList"></div>
+</div>
+</section>
 
-<footer>
-    CampusPocket © 2026
-</footer>
+<section id="timetable" class="screen">
+<div class="card">
+<h2>📅 Class timetable</h2>
+<p class="muted">Add classes and keep your weekly schedule in one place.</p>
+<form id="classForm">
+<input id="className" maxlength="100" placeholder="Class / unit name" required>
+<select id="classDay" required>
+<option value="">Choose day</option>
+<option>Monday</option><option>Tuesday</option>
+<option>Wednesday</option><option>Thursday</option>
+<option>Friday</option><option>Saturday</option><option>Sunday</option>
+</select>
+<input id="classTime" type="time" required>
+<input id="classVenue" maxlength="100" placeholder="Venue (optional)">
+<button class="primary" type="submit">Add class</button>
+</form>
+</div>
+<div class="card"><h2>My classes</h2><div id="classList"></div></div>
+</section>
 
+<section id="notes" class="screen">
+<div class="card">
+<h2>📚 Study notes</h2>
+<form id="noteForm">
+<input id="noteTitle" maxlength="120" placeholder="Note title" required>
+<textarea id="noteBody" maxlength="5000" rows="5" placeholder="Write your study notes here..." required></textarea>
+<button class="primary" type="submit">Save note</button>
+</form>
+</div>
+<div class="card"><h2>Saved notes</h2><div id="noteList"></div></div>
+</section>
+
+<section id="fees" class="screen">
+<div class="card">
+<h2>💰 Fee tracker</h2>
+<p class="muted">Record your fee target and payments. This is a personal tracker, not an official university account.</p>
+<label class="muted" for="feeTarget">Total fees (KSh)</label>
+<input id="feeTarget" type="number" min="0" step="0.01" placeholder="e.g. 256000">
+<button class="primary" onclick="saveFeeTarget()">Save total fees</button>
+</div>
+<div class="card">
+<div class="stats">
+<div class="stat"><strong id="feeTotal">0</strong><span>Total fees (KSh)</span></div>
+<div class="stat"><strong id="feePaid">0</strong><span>Paid (KSh)</span></div>
+<div class="stat"><strong id="feeBalance">0</strong><span>Balance (KSh)</span></div>
+</div>
+</div>
+<div class="card">
+<h2>Record a payment</h2>
+<form id="paymentForm">
+<input id="paymentAmount" type="number" min="0.01" step="0.01" placeholder="Amount paid (KSh)" required>
+<input id="paymentDate" type="date" required>
+<input id="paymentDescription" maxlength="100" placeholder="Description (optional)">
+<button class="primary" type="submit">Record payment</button>
+</form>
+<div id="paymentList"></div>
+</div>
+</section>
+
+<section id="settings" class="screen">
+<div class="card">
+<h2>⚙️ Settings</h2>
+<p class="muted">CampusPocket keeps this version's information in this browser on this device. It does not yet sync between devices.</p>
+<p class="muted">App version: 0.2</p>
+<div class="notice">Back up important information separately. Clearing browser data may erase your saved information.</div>
+</div>
+<div class="card">
+<h2>Reset app data</h2>
+<p class="muted">This permanently removes CampusPocket assignments, classes, notes and fee records saved in this browser.</p>
+<button class="red" onclick="resetData()">Delete all app data</button>
+</div>
+</section>
+<footer>CampusPocket · Built for students</footer>
+</main>
+
+<nav aria-label="Main navigation">
+<button class="active" data-screen="dashboard" onclick="showScreen('dashboard')"><span>🏠</span>Home</button>
+<button data-screen="assignments" onclick="showScreen('assignments')"><span>📝</span>Tasks</button>
+<button data-screen="timetable" onclick="showScreen('timetable')"><span>📅</span>Classes</button>
+<button data-screen="notes" onclick="showScreen('notes')"><span>📚</span>Notes</button>
+<button data-screen="fees" onclick="showScreen('fees')"><span>💰</span>Fees</button>
+<button data-screen="settings" onclick="showScreen('settings')"><span>⚙️</span>More</button>
+</nav>
 
 <script>
+const readData=(key,fallback)=>{
+ try {
+  const value=JSON.parse(localStorage.getItem(key));
+  return value===null?fallback:value;
+ } catch { return fallback; }
+};
+let assignments=readData('assignments',[]);
+let classes=readData('cp_classes',[]);
+let notes=readData('cp_notes',[]);
+let payments=readData('cp_payments',[]);
+let feeTarget=Number(readData('cp_fee_target',0))||0;
 
-let assignments =
-    JSON.parse(localStorage.getItem("assignments")) || [];
+function store(key,value){
+ localStorage.setItem(key,JSON.stringify(value));
+}
+function safe(value){
+ return String(value).replace(/[&<>"']/g,c=>({
+ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+ }[c]));
+}
+function showScreen(id){
+ document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===id));
+ document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.screen===id));
+ window.scrollTo(0,0);
+}
+function isOverdue(a){
+ return !a.completed && a.deadline < new Date().toLocaleDateString('en-CA');
+}
+function renderAssignments(){
+ const list=document.getElementById('assignmentList');
+ if(!assignments.length){list.innerHTML='<div class="empty">No assignments yet. Add your first one above.</div>';return;}
+ list.innerHTML=assignments.map(a=>`
+ <div class="item">
+ <h3>${safe(a.name)}</h3><p>📚 ${safe(a.course)}</p>
+ <p>📅 ${safe(a.deadline)} ${isOverdue(a)?'· 🔴 OVERDUE':''}</p>
+ <div class="actions">
+ <button class="green" onclick="toggleAssignment(${Number(a.id)})">${a.completed?'Undo':'✓ Complete'}</button>
+ <button class="red" onclick="deleteAssignment(${Number(a.id)})">Delete</button>
+ </div></div>`).join('');
+}
+function renderDashboard(){
+ const done=assignments.filter(a=>a.completed).length;
+ document.getElementById('total').textContent=assignments.length;
+ document.getElementById('completed').textContent=done;
+ document.getElementById('pending').textContent=assignments.length-done;
+ document.getElementById('overdue').textContent=assignments.filter(isOverdue).length;
+ const upcoming=document.getElementById('upcoming');
+ const next=assignments.filter(a=>!a.completed).sort((a,b)=>a.deadline.localeCompare(b.deadline)).slice(0,3);
+ upcoming.innerHTML=next.length?next.map(a=>`<div class="item"><h3>${safe(a.name)}</h3><p>${safe(a.course)} · ${safe(a.deadline)}</p></div>`).join(''):'<div class="empty">No upcoming assignments.</div>';
+}
+function refreshAssignments(){store('assignments',assignments);renderAssignments();renderDashboard();}
+document.getElementById('assignmentForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ assignments.push({id:Date.now(),name:document.getElementById('assignmentName').value.trim(),course:document.getElementById('courseName').value.trim(),deadline:document.getElementById('deadline').value,completed:false});
+ refreshAssignments();e.target.reset();
+});
+function toggleAssignment(id){assignments=assignments.map(a=>a.id===id?{...a,completed:!a.completed}:a);refreshAssignments();}
+function deleteAssignment(id){if(confirm('Delete this assignment?')){assignments=assignments.filter(a=>a.id!==id);refreshAssignments();}}
 
+function renderClasses(){
+ const el=document.getElementById('classList');
+ const sorted=[...classes].sort((a,b)=>['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'].indexOf(a.day)-['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'].indexOf(b.day)||a.time.localeCompare(b.time));
+ el.innerHTML=sorted.length?sorted.map(c=>`<div class="item"><h3>${safe(c.name)}</h3><p>${safe(c.day)} · ${safe(c.time)}</p><p>${safe(c.venue||'Venue not set')}</p><button class="red" onclick="deleteClass(${c.id})">Delete</button></div>`).join(''):'<div class="empty">No classes added yet.</div>';
+}
+document.getElementById('classForm').addEventListener('submit',e=>{
+ e.preventDefault();classes.push({id:Date.now(),name:document.getElementById('className').value.trim(),day:document.getElementById('classDay').value,time:document.getElementById('classTime').value,venue:document.getElementById('classVenue').value.trim()});
+ store('cp_classes',classes);renderClasses();e.target.reset();
+});
+function deleteClass(id){classes=classes.filter(c=>c.id!==id);store('cp_classes',classes);renderClasses();}
 
-/* SAVE DATA */
+function renderNotes(){
+ const el=document.getElementById('noteList');
+ el.innerHTML=notes.length?[...notes].reverse().map(n=>`<div class="item"><h3>${safe(n.title)}</h3><p style="white-space:pre-wrap">${safe(n.body)}</p><button class="red" onclick="deleteNote(${n.id})">Delete note</button></div>`).join(''):'<div class="empty">No notes saved yet.</div>';
+}
+document.getElementById('noteForm').addEventListener('submit',e=>{
+ e.preventDefault();notes.push({id:Date.now(),title:document.getElementById('noteTitle').value.trim(),body:document.getElementById('noteBody').value.trim()});
+ store('cp_notes',notes);renderNotes();e.target.reset();
+});
+function deleteNote(id){notes=notes.filter(n=>n.id!==id);store('cp_notes',notes);renderNotes();}
 
-function saveAssignments() {
+function money(n){return (Number(n)||0).toLocaleString('en-KE',{maximumFractionDigits:2});}
+function renderFees(){
+ const paid=payments.reduce((sum,p)=>sum+Number(p.amount),0);
+ document.getElementById('feeTotal').textContent=money(feeTarget);
+ document.getElementById('feePaid').textContent=money(paid);
+ document.getElementById('feeBalance').textContent=money(feeTarget-paid);
+ document.getElementById('feeTarget').value=feeTarget||'';
+ const el=document.getElementById('paymentList');
+ el.innerHTML=payments.length? [...payments].reverse().map(p=>`<div class="item"><h3>KSh ${money(p.amount)}</h3><p>${safe(p.date)} · ${safe(p.description||'Fee payment')}</p><button class="red" onclick="deletePayment(${p.id})">Delete</button></div>`).join(''):'<div class="empty">No payments recorded yet.</div>';
+}
+function saveFeeTarget(){
+ const value=document.getElementById('feeTarget').value;
+ if(value===''||!Number.isFinite(Number(value))||Number(value)<0){alert('Enter a valid fee amount.');return;}
+ feeTarget=Number(value);store('cp_fee_target',feeTarget);renderFees();
+}
+document.getElementById('paymentForm').addEventListener('submit',e=>{
+ e.preventDefault();const amount=Number(document.getElementById('paymentAmount').value);
+ if(!Number.isFinite(amount)||amount<=0){alert('Enter a valid payment amount.');return;}
+ payments.push({id:Date.now(),amount,date:document.getElementById('paymentDate').value,description:document.getElementById('paymentDescription').value.trim()});
+ store('cp_payments',payments);renderFees();e.target.reset();
+});
+function deletePayment(id){payments=payments.filter(p=>p.id!==id);store('cp_payments',payments);renderFees();}
 
-    localStorage.setItem(
-        "assignments",
-        JSON.stringify(assignments)
-    );
-
+function resetData(){
+ if(!confirm('Delete ALL CampusPocket data saved in this browser? This cannot be undone.'))return;
+ ['assignments','cp_classes','cp_notes','cp_payments','cp_fee_target'].forEach(k=>localStorage.removeItem(k));
+ assignments=[];classes=[];notes=[];payments=[];feeTarget=0;
+ renderAssignments();renderDashboard();renderClasses();renderNotes();renderFees();
+ showScreen('dashboard');
 }
 
-
-/* ADD ASSIGNMENT */
-
-function addAssignment() {
-
-    const name =
-        document
-        .getElementById("assignmentName")
-        .value
-        .trim();
-
-    const course =
-        document
-        .getElementById("courseName")
-        .value
-        .trim();
-
-    const deadline =
-        document
-        .getElementById("deadline")
-        .value;
-
-
-    if (!name || !course || !deadline) {
-
-        alert("Please fill in all fields.");
-
-        return;
-    }
-
-
-    const assignment = {
-
-        id: Date.now(),
-
-        name: name,
-
-        course: course,
-
-        deadline: deadline,
-
-        completed: false
-
-    };
-
-
-    assignments.push(assignment);
-
-    saveAssignments();
-
-
-    document
-    .getElementById("assignmentName")
-    .value = "";
-
-    document
-    .getElementById("courseName")
-    .value = "";
-
-    document
-    .getElementById("deadline")
-    .value = "";
-
-
-    displayAssignments();
-
-    updateDashboard();
-
-}
-
-
-/* COMPLETE */
-
-function completeAssignment(id) {
-
-    assignments =
-        assignments.map(function(assignment) {
-
-            if (assignment.id === id) {
-
-                assignment.completed =
-                    !assignment.completed;
-
-            }
-
-            return assignment;
-
-        });
-
-
-    saveAssignments();
-
-    displayAssignments();
-
-    updateDashboard();
-
-}
-
-
-/* DELETE */
-
-function deleteAssignment(id) {
-
-    if (!confirm("Delete this assignment?")) {
-
-        return;
-
-    }
-
-
-    assignments =
-        assignments.filter(function(assignment) {
-
-            return assignment.id !== id;
-
-        });
-
-
-    saveAssignments();
-
-    displayAssignments();
-
-    updateDashboard();
-
-}
-
-
-/* CHECK OVERDUE */
-
-function isOverdue(assignment) {
-
-    if (assignment.completed) {
-
-        return false;
-
-    }
-
-
-    const today =
-        new Date();
-
-    today.setHours(0,0,0,0);
-
-
-    const deadline =
-        new Date(assignment.deadline);
-
-    deadline.setHours(0,0,0,0);
-
-
-    return deadline < today;
-
-}
-
-
-/* DISPLAY */
-
-function displayAssignments() {
-
-    const list =
-        document
-        .getElementById("assignmentList");
-
-
-    if (assignments.length === 0) {
-
-        list.innerHTML =
-        '<div class="empty">No assignments yet.</div>';
-
-        return;
-
-    }
-
-
-    list.innerHTML = "";
-
-
-    assignments.forEach(function(assignment) {
-
-        const item =
-            document.createElement("div");
-
-
-        item.className = "assignment";
-
-
-        if (assignment.completed) {
-
-            item.classList.add("completed");
-
-        }
-
-
-        if (isOverdue(assignment)) {
-
-            item.classList.add("overdue");
-
-        }
-
-
-        item.innerHTML = `
-
-            <h3>${assignment.name}</h3>
-
-            <p>📚 ${assignment.course}</p>
-
-            <p>📅 ${assignment.deadline}</p>
-
-            ${
-                isOverdue(assignment)
-                ? "<p>🔴 OVERDUE</p>"
-                : ""
-            }
-
-            <div class="actions">
-
-                <button
-                    class="complete-btn"
-                    onclick="completeAssignment(${assignment.id})">
-
-                    ${
-                        assignment.completed
-                        ? "↩ Undo"
-                        : "✓ Complete"
-                    }
-
-                </button>
-
-
-                <button
-                    class="delete-btn"
-                    onclick="deleteAssignment(${assignment.id})">
-
-                    🗑 Delete
-
-                </button>
-
-            </div>
-
-        `;
-
-
-        list.appendChild(item);
-
-    });
-
-}
-
-
-/* DASHBOARD */
-
-function updateDashboard() {
-
-    const total =
-        assignments.length;
-
-
-    const completed =
-        assignments.filter(function(a) {
-
-            return a.completed;
-
-        }).length;
-
-
-    const pending =
-        total - completed;
-
-
-    const overdue =
-        assignments.filter(function(a) {
-
-            return isOverdue(a);
-
-        }).length;
-
-
-    document
-    .getElementById("total")
-    .innerText = total;
-
-
-    document
-    .getElementById("pending")
-    .innerText = pending;
-
-
-    document
-    .getElementById("completed")
-    .innerText = completed;
-
-
-    document
-    .getElementById("overdue")
-    .innerText = overdue;
-
-}
-
-
-/* START APP */
-
-displayAssignments();
-
-updateDashboard();
-
+renderAssignments();renderDashboard();renderClasses();renderNotes();renderFees();
 </script>
-
 </body>
 </html>
